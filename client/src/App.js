@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import AddDestinationForm from './components/AddDestinationForm';
 import Destinations from './components/Destinations';
 import Home from './components/Home';
 import Navigation from './components/Navigation';
@@ -20,6 +21,8 @@ function App() {
       })
   }, [])
 
+  const addDestination = (destination) => setDestinations(current => [...current, destination])
+
   if (errors) return <h1>{errors}</h1>
   return (
 
@@ -27,7 +30,8 @@ function App() {
       <Navigation />
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route path="/destinations" element={<Destinations destinations={destinations} setDestinations={setDestinations} />} />
+        <Route path="/destinations" element={<Destinations destinations={destinations} setDestinations={setDestinations} addDestination={addDestination} />} />
+        <Route path='/productions/new' element={<AddDestinationForm addDestination={addDestination} />} />
       </Routes>
     </div>
 
