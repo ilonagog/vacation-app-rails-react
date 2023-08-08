@@ -1,23 +1,14 @@
 import React from 'react'
 import Destination from './Destination'
-import styled from 'styled-components'
 
 const Destinations = ({ destinations }) => {
+
+    const destinationsList = destinations.map((destination) => (<Destination key={destination.id} destination={destination} />))
+
     return (
-
-        <div>
-            <CardContainer>
-                {destinations.map(destination => <Destination key={destination.id} destination={destination} />)}
-            </CardContainer>
-
-        </div>
+        <ul> {destinationsList} </ul>
     )
 }
 
-export default Destinations
+export default Destinations;
 
-const CardContainer = styled.ul`
-    display:flex;
-    flex-direction:column;
-
-`

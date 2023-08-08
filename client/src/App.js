@@ -13,7 +13,6 @@ function App() {
     fetch('/destinations')
       .then((resp) => {
         if (resp.ok) {
-
           resp.json().then(setDestinations)
         } else {
           resp.json().then(data => setErrors(data.error))
@@ -27,10 +26,8 @@ function App() {
     < div className="App" >
       <Navigation />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route exact path="/" element={<Home />} />
         <Route path="/destinations" element={<Destinations destinations={destinations} setDestinations={setDestinations} />} />
-
-
       </Routes>
     </div>
 
