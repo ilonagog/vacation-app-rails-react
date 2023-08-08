@@ -1,20 +1,17 @@
 class DestinationsController < ApplicationController
+    before_action :find_production, only: [:show]
+
     def index
-        destinations = Destination.all
-        render json: destinations, status: :ok
+        render json: Destination.all, status: :ok
     end
 
 
     def show
-        destination = Destination.find(params[:id])
-        render json: destination, status: :ok
-
-    rescue ActiveRecord::RecordNotFound => error
-        render json: {message: error.message}
+        render json: @destination, status: :ok
     end
 
     def create
-        destination  = Destination.create(destination_params)
+        destination  = Destination.create!(destination_params)
         render json: destination, status: :created
     end
 
@@ -22,5 +19,8 @@ class DestinationsController < ApplicationController
 
     def destination_params
         params.permit(:name, :location, :image, :description, :price)
+    end
+    def find_production
+        @destination = Destination.find(params[:id])
     end
 end

@@ -3,15 +3,21 @@ import './App.css';
 
 function App() {
   const [destinations, setDestinations] = useState([])
+  const [errors, setErrors] = useState(false)
 
   useEffect(() => {
     fetch('/destinations')
-      .then((resp) => resp.json())
-      .then(data => {
-        console.log(data)
-        setDestinations(data)
+      .then((resp) => {
+        if (resp.ok) {
+
+          resp.json().then(setDestinations)
+        } else {
+          resp.json().then(data => setErrors(data.error))
+        }
       })
   }, [])
+
+  if (errors) return <h1>{errors}</h1>
   return (
     < div className="App" >
       <header className="App-header">
