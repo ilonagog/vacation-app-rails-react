@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const Destination = ({ destination }) => {
     const { name, location, image, description, price, id } = destination
-    console.log(destination)
+    // console.log(destination)
     return (
         <div>
             <ul>

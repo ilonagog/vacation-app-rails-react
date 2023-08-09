@@ -19,3 +19,28 @@ code {
 .form {
   color: black;
 }
+
+.menu {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 5px;
+  padding: 10px;
+}
+
+ul {
+  list-style: none;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding-top: 5px;
+
+}
+
+.formView {
+  width: 100mm;
+  margin: auto;
+}
