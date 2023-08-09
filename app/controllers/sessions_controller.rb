@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
 
     # end
     # #log out
-    # def destroy 
-    #     session.clear
-    # end
+    def destroy 
+        session.clear
+    end
 end
