@@ -10,7 +10,7 @@ const Home = () => {
 
         return (
             <div>
-                <hi>hi</hi>
+                <hi>Welcome {user.username}</hi>
             </div>
         )
     }

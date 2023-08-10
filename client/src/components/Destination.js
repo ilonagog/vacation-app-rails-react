@@ -12,6 +12,7 @@ const Destination = ({ destination }) => {
                 <img src={image} alt={image} />
                 <p>{description}</p>
                 <p>{price}</p>
+                <Link to="/login">Login and leave your review</Link>
             </ul>
         </div>
 
