@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 const DestinationDetails = () => {
-    const [destination, setDestination] = useState({})
+    const [destination, setDestination] = useState([])
     const [errors, setErrors] = useState(false)
     const params = useParams()
 
@@ -23,7 +23,7 @@ const DestinationDetails = () => {
     }, [])
 
     const handleReview = () => {
-        fetch(`/reviews`, {
+        fetch("/reviews", {
             method: "POST",
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify({})
@@ -31,6 +31,7 @@ const DestinationDetails = () => {
     }
     return (
         <div>
+            <h1>{destination.name}</h1>
 
         </div>
     )

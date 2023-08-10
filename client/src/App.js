@@ -7,6 +7,8 @@ import Home from './components/Home';
 import Navigation from './components/Navigation';
 import Login from './Login';
 import Signup from './Signup';
+import Contact from './components/Contact';
+import DestinationDetails from './components/DestinationDetails';
 
 function App() {
   const [destinations, setDestinations] = useState([])
@@ -33,9 +35,11 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/destinations" element={<Destinations destinations={destinations} setDestinations={setDestinations} />} />
-        <Route path='/productions/new' element={<AddDestinationForm addDestination={addDestination} setDestinations={setDestinations} />} />
+        <Route path="/destination/:id" element={<DestinationDetails />} />
+        <Route path='/destination/new' element={<AddDestinationForm addDestination={addDestination} setDestinations={setDestinations} />} />
         <Route path='/signup' element={<Signup />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
     </div>
 
