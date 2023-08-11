@@ -34,6 +34,7 @@ const AddDestinationForm = ({ addDestination, setViewForm, setDestinations }) =>
       })
     setFormData(formData)
     setViewForm(false)
+    setDestinations()
   }
   return (
     <div>

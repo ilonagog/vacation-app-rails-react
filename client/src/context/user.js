@@ -35,6 +35,23 @@ function UserProvider({ children }) {
     }
     console.log(reviews)
 
+    const addReview = (formData, destinationId) => {
+        fetch(`/destinations/${destinationId}/reviews`, {
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+            .then(r => r.json())
+            .then(data => {
+                setReviews([...reviews, data])
+                navigate('/reviews')
+            })
+
+    }
+
     const login = (user) => {
         setUser(user)
         setLoggedIn(true)
@@ -55,7 +72,7 @@ function UserProvider({ children }) {
         setLoggedIn(true)
     }
     return (
-        <UserContext.Provider value={{ user, login, logout, signup, loggedIn, reviews }}>
+        <UserContext.Provider value={{ user, login, logout, signup, loggedIn, reviews, addReview }}>
             {children}
         </UserContext.Provider>
     )

@@ -1,15 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import NewReview from './NewReview';
+import { UserContext } from '../context/user';
 
 
 
 const Destination = ({ destination }) => {
     const { name, location, image, description, price, id } = destination
+    const { loggedIn } = useContext(UserContext)
     // console.log(destination)
     return (
         <section id="blog" className='block blog-block'>
@@ -27,7 +29,6 @@ const Destination = ({ destination }) => {
                                     </Card.Text>
                                     <Card.Footer> <span class="bi bi-geo-alt-fill"></span>    {location}</Card.Footer>
                                     <Card.Footer>$ {price}</Card.Footer>
-                                    <NewReview destinationId={id} />
                                     <Link to="/login">Login and leave your review</Link>
                                 </Card.Body>
                             </Card>
