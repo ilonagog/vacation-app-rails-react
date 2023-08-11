@@ -45,35 +45,38 @@ function Login() {
 
     return (
         <>
-            <mobiscroll.Form theme="mobiscroll" onSubmit={handleSubmit}>
-                <div className="mbsc-row">
-                    <div className="mbsc-col-12 mbsc-col-md-6 mbsc-col-lg-3">
-                        <mobiscroll.Input
-                            inputStyle="box"
-                            labelStyle="floating"
-                            placeholder="Enter your username"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                        >
-                            Username
-                        </mobiscroll.Input>
+            <div className='form'>
+
+                <mobiscroll.Form theme="mobiscroll" onSubmit={handleSubmit} className='form'>
+                    <div className="mbsc-row">
+                        <div className="mbsc-col-12 mbsc-col-md-6 mbsc-col-lg-3">
+                            <mobiscroll.Input
+                                inputStyle="box"
+                                labelStyle="floating"
+                                placeholder="Enter your username"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                            >
+                                Username
+                            </mobiscroll.Input>
+                        </div>
+                        <div className="mbsc-col-12 mbsc-col-md-6 mbsc-col-lg-3">
+                            <mobiscroll.Input
+                                inputStyle="box"
+                                labelStyle="floating"
+                                type="password"
+                                passwordToggle="true"
+                                placeholder="Set a password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            >
+                                Password
+                            </mobiscroll.Input>
+                        </div>
+                        <mobiscroll.Button type="submit">LogIn</mobiscroll.Button>
                     </div>
-                    <div className="mbsc-col-12 mbsc-col-md-6 mbsc-col-lg-3">
-                        <mobiscroll.Input
-                            inputStyle="box"
-                            labelStyle="floating"
-                            type="password"
-                            passwordToggle="true"
-                            placeholder="Set a password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        >
-                            Password
-                        </mobiscroll.Input>
-                    </div>
-                </div>
-                <mobiscroll.Button type="submit">LogIn</mobiscroll.Button>
-            </mobiscroll.Form>
+                </mobiscroll.Form>
+            </div>
             <ul>
                 <h3>{errors}</h3>
             </ul>

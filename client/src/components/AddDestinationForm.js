@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const AddDestinationForm = ({ addDestination, setViewForm }) => {
+const AddDestinationForm = ({ addDestination, setViewForm, setDestinations }) => {
   const [formData, setFormData] = useState({
     name: "",
     location: "",

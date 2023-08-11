@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
+// import './index.css';
 import AddDestinationForm from './components/AddDestinationForm';
 import Destinations from './components/Destinations';
 import Home from './components/Home';
@@ -34,7 +35,7 @@ function App() {
       <Navigation />
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route path="/destinations" element={<Destinations destinations={destinations} setDestinations={setDestinations} />} />
+        <Route path="/destinations" element={<Destinations destinations={destinations} setDestinations={setDestinations} addDestination={addDestination} />} />
         <Route path="/destination/:id" element={<DestinationDetails />} />
         <Route path='/destination/new' element={<AddDestinationForm addDestination={addDestination} setDestinations={setDestinations} />} />
         <Route path='/signup' element={<Signup />} />

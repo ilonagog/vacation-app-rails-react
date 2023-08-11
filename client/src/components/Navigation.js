@@ -28,7 +28,7 @@ const Navigation = () => {
             <Link className="home" to="/">Home</Link>
             <Link to="/destinations">Destinations</Link>
             <Link to="/contact">Contact Us</Link>
-            <button onClick={logoutUser}>LogOut</button>
+            <button className="logout" onClick={logoutUser}>LogOut</button>
             {!menu ?
                 <div onClick={() => setMenu(!menu)} className="menu">
                     <RxDropdownMenu size={30} />

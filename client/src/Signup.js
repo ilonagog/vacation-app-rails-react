@@ -69,8 +69,8 @@ const Signup = () => {
                             Password
                         </mobiscroll.Input>
                     </div>
+                    <mobiscroll.Button type="submit">Sign In</mobiscroll.Button>
                 </div>
-                <mobiscroll.Button type="submit">Sign In</mobiscroll.Button>
             </mobiscroll.Form>
             <ul>{errors}</ul>
         </>
