@@ -17,6 +17,12 @@ const Home = () => {
                 <img width="100%" height="60%" src="https://hips.hearstapps.com/hmg-prod/images/nature-quotes-landscape-1648265299.jpg" alt="vacation" />
                 <div className='centered'>
                     Explore The World
+                    <br />
+                    <br />
+                    Find Next Place To Visit
+                    <br />
+
+
                 </div>
             </div>
         )

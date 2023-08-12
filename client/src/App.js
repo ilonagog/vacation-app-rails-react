@@ -11,6 +11,7 @@ import Signup from './Signup';
 import Contact from './components/Contact';
 import DestinationDetails from './components/DestinationDetails';
 import Reviews from './components/Reviews';
+import UserProfile from './components/UserProfile';
 
 function App() {
   const [destinations, setDestinations] = useState([])
@@ -40,6 +41,7 @@ function App() {
         <Route path="/destination/:id" element={<DestinationDetails />} />
         <Route path='/destination/new' element={<AddDestinationForm addDestination={addDestination} setDestinations={setDestinations} />} />
         <Route path="/reviews" element={<Reviews />} />
+        <Route path="user/:id/reviews" element={<UserProfile />} />
         <Route path='/signup' element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/contact" element={<Contact />} />

@@ -1,8 +1,8 @@
 import { useState, useContext } from 'react'
 import { UserContext } from './context/user'
+import { useNavigate } from 'react-router-dom';
 import mobiscroll from '@mobiscroll/react-lite';
 import "@mobiscroll/react-lite/dist/css/mobiscroll.min.css";
-import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
     const [username, setUsername] = useState("")
@@ -29,10 +29,10 @@ const Signup = () => {
                 if (!user.errors) {
                     console.log(user)
                     signup(user)
-                    navigate('/')
-                } else {
                     setUsername("")
                     setPassword("")
+                    navigate('/destinations')
+                } else {
                     const errorLis = user.errors.map(e => <li>{e}</li>)
                     setErrors(errorLis)
                 }

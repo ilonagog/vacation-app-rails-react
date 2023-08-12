@@ -15,7 +15,9 @@ function UserProvider({ children }) {
         fetch('/me')
             .then(res => res.json())
             .then(data => {
+
                 setUser(data)
+                console.log(data)
                 if (data.error) {
                     setLoggedIn(false)
                 } else {
@@ -46,6 +48,7 @@ function UserProvider({ children }) {
         })
             .then(r => r.json())
             .then(data => {
+                console.log(data)
                 setReviews([...reviews, data])
                 navigate('/reviews')
             })

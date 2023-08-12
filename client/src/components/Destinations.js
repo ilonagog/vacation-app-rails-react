@@ -31,7 +31,7 @@ const Destinations = ({ destinations, addDestination }) => {
         <div>
             <button onClick={handleClick}>Add New Property</button>
             {viewForm ?
-                <AddDestinationForm addDestination={addDestination} setViewForm={setViewForm} />
+                <AddDestinationForm setViewForm={setViewForm} addDestination={addDestination} />
                 :
                 <ul>{destinationsList}</ul>
             }

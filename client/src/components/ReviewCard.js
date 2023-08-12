@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { UserContext } from '../context/user'
 
 const ReviewCard = ({ review }) => {
+
+    const { user } = useContext(UserContext)
 
 
     return (
         <div>
-            <p>hi</p>
-
-            <p>{review.rating}</p>
+            <h3>{user.username}</h3>
+            <p>Review: {review.review}</p>
+            <p> Rating: {review.rating}</p>
         </div>
     )
 }

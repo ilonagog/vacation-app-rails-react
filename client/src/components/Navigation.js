@@ -1,9 +1,10 @@
 import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { RxDropdownMenu } from 'react-icons/rx'
-import { AiOutlineClose } from "react-icons/ai"
 import { UserContext } from '../context/user'
 import { useNavigate } from 'react-router-dom'
+import { RxDropdownMenu } from 'react-icons/rx'
+import { AiOutlineClose } from "react-icons/ai"
+import { BiSolidUserAccount } from 'react-icons/bi'
 
 
 
@@ -27,7 +28,7 @@ const Navigation = () => {
         <div className="nav">
             <Link className="home" to="/">Home</Link>
             <Link to="/destinations">Destinations</Link>
-            <Link to="/contact">Contact Us</Link>
+            <Link to="/contact">About Us</Link>
             <button className="logout" onClick={logoutUser}>LogOut</button>
             {!menu ?
                 <div onClick={() => setMenu(!menu)} className="menu">
@@ -35,9 +36,9 @@ const Navigation = () => {
                 </div> :
                 <ul>
                     {/* <li><Link to='/users/1'>User Page</Link></li> */}
+                    <li><Link to={`/user/{id}/reviews`}>Profile</Link></li>
                     <li><Link to='/signup'>Sign Up</Link></li>
-                    <li><Link to='/login'>Login</Link></li>
-
+                    <li><Link to='/login'>{BiSolidUserAccount} User login</Link></li>
                     <li onClick={() => setMenu(!menu)}><AiOutlineClose /></li>
                 </ul>
             }
