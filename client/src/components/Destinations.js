@@ -1,4 +1,6 @@
+import { Button } from '@mobiscroll/react-lite'
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import AddDestinationForm from './AddDestinationForm'
 import Destination from './Destination'
 
@@ -29,9 +31,10 @@ const Destinations = ({ destinations, addDestination }) => {
     // }
     return (
         <div>
-            <button onClick={handleClick}>Add New Property</button>
+            <Link to="/destinations/new"> <Button onClick={handleClick}>Add New Property</Button></Link>
             {viewForm ?
                 <AddDestinationForm setViewForm={setViewForm} addDestination={addDestination} />
+
                 :
                 <ul>{destinationsList}</ul>
             }

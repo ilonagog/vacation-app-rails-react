@@ -35,10 +35,10 @@ const DestinationDetails = () => {
     return (
         <div>
             <h1>{destination.name}</h1>
-            <ul>
+            {/* <ul>
                 {reviews}
-                <NewReview />
-            </ul>
+            </ul> */}
+            <ul>{errors}</ul>
 
 
         </div>

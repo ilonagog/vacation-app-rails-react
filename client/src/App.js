@@ -12,6 +12,7 @@ import Contact from './components/Contact';
 import DestinationDetails from './components/DestinationDetails';
 import Reviews from './components/Reviews';
 import UserProfile from './components/UserProfile';
+import NewReview from './components/NewReview';
 
 function App() {
   const [destinations, setDestinations] = useState([])
@@ -38,8 +39,12 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/destinations" element={<Destinations destinations={destinations} setDestinations={setDestinations} addDestination={addDestination} />} />
-        <Route path="/destination/:id" element={<DestinationDetails />} />
-        <Route path='/destination/new' element={<AddDestinationForm addDestination={addDestination} setDestinations={setDestinations} />} />
+        <Route path="/destination/:id" element={
+          <>
+            <DestinationDetails />
+            <NewReview />
+          </>} />
+        <Route path='/destinations/new' element={<AddDestinationForm addDestination={addDestination} setDestinations={setDestinations} />} />
         <Route path="/reviews" element={<Reviews />} />
         <Route path="user/:id/reviews" element={<UserProfile />} />
         <Route path='/signup' element={<Signup />} />

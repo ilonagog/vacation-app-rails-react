@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
   attributes :id, :username, :password
   has_many :reviews
-  has_many :destinations
+  has_many :destinations, through: :reviews
 end

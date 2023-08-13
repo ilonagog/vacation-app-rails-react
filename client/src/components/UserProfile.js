@@ -6,7 +6,7 @@ const UserProfile = () => {
     const { user } = useContext(UserContext)
     const { username } = user
     return (
-        <div>
+        <div className='container'>
             <p>Our Special User:</p>
             <h3>{username}</h3>
             <hr />

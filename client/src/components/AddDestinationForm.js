@@ -1,4 +1,8 @@
+import { Button } from '@mobiscroll/react-lite'
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+import mobiscroll from '@mobiscroll/react-lite';
+import "@mobiscroll/react-lite/dist/css/mobiscroll.min.css";
 
 const AddDestinationForm = ({ addDestination, setViewForm, setDestinations }) => {
   const [formData, setFormData] = useState({
@@ -34,25 +38,75 @@ const AddDestinationForm = ({ addDestination, setViewForm, setDestinations }) =>
       })
     setFormData(formData)
     setViewForm(false)
-    setDestinations()
+    setDestinations(formData)
   }
   return (
-    <div>
+    <div className='form-add'>
       {errors ? errors.map(e => <div>{e[0]} {e[1]}</div>) : null}
-      <form onSubmit={handleSubmit}>
-        <h3>Test</h3>
-        <label>name</label>
-        <input type="text" name="name" value={formData.name} onChange={handleChange}></input>
-        <label>location</label>
-        <input type="text" name="location" value={formData.location} onChange={handleChange}></input>
-        <label>image</label>
-        <input type="text" name="image" value={formData.image} onChange={handleChange}></input>
-        <label>description</label>
-        <input type="text" name="description" value={formData.description} onChange={handleChange}></input>
-        <label>price</label>
-        <input type="text" name="price" value={formData.price} onChange={handleChange}></input>
-        <input type="submit" />
-      </form>
+      <Button><Link to="/destinations">Back to our destinations</Link></Button>
+      <h3>Add new property!</h3>
+      <mobiscroll.Form theme="mobiscroll" onSubmit={handleSubmit}>
+        <div className="mbsc-row">
+          <div className="mbsc-col-12 mbsc-col-md-6 mbsc-col-lg-3">
+            <mobiscroll.Input
+              inputStyle="box"
+              labelStyle="floating"
+              placeholder="Enter property name"
+              value={formData.name}
+              onChange={handleChange}
+            >
+              Name:
+            </mobiscroll.Input>
+          </div>
+          <div className="mbsc-col-12 mbsc-col-md-6 mbsc-col-lg-3">
+            <mobiscroll.Input
+              inputStyle="box"
+              labelStyle="floating"
+              placeholder="Enter property location"
+              value={formData.location}
+              onChange={handleChange}
+            >
+              Location:
+            </mobiscroll.Input>
+          </div>
+          <div className="mbsc-col-12 mbsc-col-md-6 mbsc-col-lg-3">
+            <mobiscroll.Input
+              inputStyle="box"
+              labelStyle="floating"
+              placeholder="Enter property image"
+              value={formData.image}
+              onChange={handleChange}
+            >
+              Image:
+            </mobiscroll.Input>
+          </div>
+          <div className="mbsc-col-12 mbsc-col-md-6 mbsc-col-lg-3">
+            <mobiscroll.Input
+              inputStyle="box"
+              labelStyle="floating"
+              placeholder="Enter property description"
+              value={formData.description}
+              onChange={handleChange}
+
+            >
+              Description:
+            </mobiscroll.Input>
+          </div>
+          <div className="mbsc-col-12 mbsc-col-md-6 mbsc-col-lg-3">
+            <mobiscroll.Input
+              inputStyle="box"
+              labelStyle="floating"
+              type="price"
+              placeholder="Set the price"
+              value={formData.price}
+              onChange={handleChange}
+            >
+              Price:
+            </mobiscroll.Input>
+          </div>
+          <mobiscroll.Button type="submit">Submit</mobiscroll.Button>
+        </div>
+      </mobiscroll.Form>
 
     </div>
   )

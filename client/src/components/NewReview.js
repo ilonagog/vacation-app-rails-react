@@ -1,7 +1,10 @@
 import React, { useContext, useState } from 'react'
 import { UserContext } from '../context/user'
-
-const NewReview = ({ destinationId }) => {
+import mobiscroll from '@mobiscroll/react-lite';
+import "@mobiscroll/react-lite/dist/css/mobiscroll.min.css";
+import { Link } from 'react-router-dom';
+import { Button } from '@mobiscroll/react-lite';
+const NewReview = () => {
 
     const { addReview } = useContext(UserContext)
     // const [review, setReview] = useState("")
@@ -14,7 +17,7 @@ const NewReview = ({ destinationId }) => {
         console.log(e.target.value)
         setInput({
             ...input,
-            [e.target.review]: e.target.value
+            [e.target.name]: e.target.value
         })
     }
 
@@ -24,14 +27,34 @@ const NewReview = ({ destinationId }) => {
     }
     return (
         <div>
-            <form onSubmit={handleSubmit}>
-                <h3>Test</h3>
-                <label>Review</label>
-                <input type="text" name="review" value={input.review} onChange={handleChange}></input>
-                <label>Rating</label>
-                <input type="text" name="rating" value={input.rating} onChange={handleChange}></input>
-                <input type="submit" />
-            </form>
+            <Button><Link to="/destinations">Back to our destinations</Link></Button>
+            <mobiscroll.Form theme="mobiscroll" onSubmit={handleSubmit}>
+                <div className="mbsc-row">
+                    <div className="mbsc-col-12 mbsc-col-md-6 mbsc-col-lg-3">
+                        <mobiscroll.Input
+                            inputStyle="box"
+                            labelStyle="floating"
+                            placeholder="Write your review"
+                            value={input.review}
+                            onChange={handleChange}
+                        >
+                            Review:
+                        </mobiscroll.Input>
+                    </div>
+                    <div className="mbsc-col-12 mbsc-col-md-6 mbsc-col-lg-3">
+                        <mobiscroll.Input
+                            inputStyle="box"
+                            labelStyle="floating"
+                            placeholder="Rate your trip"
+                            value={input.rating}
+                            onChange={handleChange}
+                        >
+                            Rate:
+                        </mobiscroll.Input>
+                    </div>
+                    <mobiscroll.Button type="submit">Submit</mobiscroll.Button>
+                </div>
+            </mobiscroll.Form>
         </div>
     )
 }
