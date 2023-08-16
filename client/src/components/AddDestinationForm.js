@@ -1,48 +1,62 @@
 import { Button } from '@mobiscroll/react-lite'
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import mobiscroll from '@mobiscroll/react-lite';
 import "@mobiscroll/react-lite/dist/css/mobiscroll.min.css";
 
 const AddDestinationForm = ({ addDestination, setViewForm, setDestinations }) => {
-  const [formData, setFormData] = useState({
+  const [input, setInput] = useState({
     name: "",
     location: "",
     image: "",
     description: "",
     price: ""
   })
-  const [errors, setErrors] = useState([])
+  // const { name, location, image, description, price } = input
+  const navigate = useNavigate()
+
+  // const [errors, setErrors] = useState([])
 
   const handleChange = (e) => {
-    const { name, value } = e.target
-    setFormData({ ...formData, [name]: value })
+    // console.log(e.target.value)
+    // const { name, value } = e.target
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value
+    })
   }
+  console.log(input)
   const handleSubmit = (e) => {
     e.preventDefault()
 
     fetch('/destinations', {
       method: "POST",
       headers: { "Content-type": "application/json" },
-      body: JSON.stringify({ ...formData })
+      body: JSON.stringify(input)
     })
-      .then(res => {
-        if (res.ok) {
-          setErrors([]);
-          res.json().then((newDestination) => addDestination(newDestination));
-        } else {
-          //should display errors but dont 
-          res.json().then((err) =>
-            setErrors(err.errors))
-        }
+      .then(res => res.json())
+      .then(newDestination => {
+        console.log(newDestination)
+        addDestination(newDestination)
+        // setDestinations(newDestination)
+        navigate("/destinations")
       })
-    setFormData(formData)
-    setViewForm(false)
-    setDestinations(formData)
   }
+
+
+  //     .then(res =>
+  //       res.json())
+  //     .then((newDestination) => {
+  //       setDestinations([
+  //         ...destinations, newDestination
+  //       ])
+  //       navigate("/destinations")
+  //     })
+  // }
+
+
   return (
     <div className='form-add'>
-      {errors ? errors.map(e => <div>{e[0]} {e[1]}</div>) : null}
       <Button><Link to="/destinations">Back to our destinations</Link></Button>
       <h3>Add new property!</h3>
       <mobiscroll.Form theme="mobiscroll" onSubmit={handleSubmit}>
@@ -52,7 +66,8 @@ const AddDestinationForm = ({ addDestination, setViewForm, setDestinations }) =>
               inputStyle="box"
               labelStyle="floating"
               placeholder="Enter property name"
-              value={formData.name}
+              name="name"
+              value={input.name}
               onChange={handleChange}
             >
               Name:
@@ -63,7 +78,8 @@ const AddDestinationForm = ({ addDestination, setViewForm, setDestinations }) =>
               inputStyle="box"
               labelStyle="floating"
               placeholder="Enter property location"
-              value={formData.location}
+              name="location"
+              value={input.location}
               onChange={handleChange}
             >
               Location:
@@ -74,7 +90,8 @@ const AddDestinationForm = ({ addDestination, setViewForm, setDestinations }) =>
               inputStyle="box"
               labelStyle="floating"
               placeholder="Enter property image"
-              value={formData.image}
+              name="image"
+              value={input.image}
               onChange={handleChange}
             >
               Image:
@@ -85,7 +102,8 @@ const AddDestinationForm = ({ addDestination, setViewForm, setDestinations }) =>
               inputStyle="box"
               labelStyle="floating"
               placeholder="Enter property description"
-              value={formData.description}
+              name="description"
+              value={input.description}
               onChange={handleChange}
 
             >
@@ -98,7 +116,8 @@ const AddDestinationForm = ({ addDestination, setViewForm, setDestinations }) =>
               labelStyle="floating"
               type="price"
               placeholder="Set the price"
-              value={formData.price}
+              name="price"
+              value={input.price}
               onChange={handleChange}
             >
               Price:

@@ -1,3 +1,8 @@
+:root {
+  --link-size: 64px;
+  --trans-property: all 0.3s ease;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,17 +10,20 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(189 208 241);
 }
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
+/* 
 * {
   background-color: rgb(189 208 241);
   ;
-}
+} */
 
 /* .form {
   display: grid;
@@ -36,6 +44,7 @@ ul {
 }
 
 .nav {
+
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -64,21 +73,27 @@ h1 {
 
 .centered {
   position: absolute;
-  top: 40%;
-  left: 20%;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
   background: none;
-  color: white;
+  color: rgb(246, 247, 247);
   font-size: 24px;
   font-family: myFirstFont;
   font-variant: petite-caps;
-  opacity: .6;
+  font-weight: bolder;
+  /* opacity: .8; */
   /* src: url(sansation_light.woff); */
+}
+
+.home-vac {
+  display: flex;
+  opacity: 0.7;
 }
 
 .about {
   position: absolute;
-  top: 70%;
+  /* top: 80%; */
   /* left: 20%; */
   display: grid;
   background: none;
@@ -86,7 +101,7 @@ h1 {
   font-family: myFirstFont;
   font-variant: petite-caps;
   /* opacity: .5; */
-  color: rgb(5, 81, 33);
+  color: rgb(196 238 212);
 }
 
 p {
@@ -188,6 +203,7 @@ h3 {
 }
 
 .logout {
+
   border-color: #001a27;
 }
 
@@ -209,4 +225,179 @@ h3 {
 a:-webkit-any-link {
   color: #001a27;
   text-decoration: none;
+}
+
+.btn btn-large btn-info {
+  background: none;
+}
+
+/* footer {
+  background-color: gray;
+  text-align: center;
+  margin-top: auto;
+  padding: 8px;
+} */
+.social-icons {
+  width: 100%;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-icon {
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  width: var(--link-size);
+  height: var(--link-size);
+  margin: 8px;
+  border-color: #001a27;
+  border-radius: 50%;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12);
+  text-decoration: none;
+  transition: var(--trans-property);
+}
+
+.social-icon i {
+  margin: auto;
+  font-size: 24px;
+  color: #67798e;
+  z-index: 1;
+  transition: var(--trans-property);
+}
+
+.social-icon:after {
+  content: "";
+  width: var(--link-size);
+  height: var(--link-size);
+  position: absolute;
+  transform: translate(0, var(--link-size));
+  border-radius: 50%;
+  transition: var(--trans-property);
+}
+
+.social-icon.twitter:after {
+  background-color: #1da1f2;
+}
+
+.social-icon.github:after {
+  background-color: #24292e;
+}
+
+.social-icon.dribbble:after {
+  background-color: #ea4c89;
+}
+
+.social-icon.instagram:after {
+  background-color: #5851db;
+}
+
+.social-icon.facebook:after {
+  background-color: #1769ff;
+}
+
+/*** Animations ***/
+.social-icon:hover {
+  transform: translateY(-4px);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.16);
+}
+
+.social-icon:hover i {
+  color: rgb(17, 16, 16);
+}
+
+.social-icon:hover:after {
+  transform: translate(0) scale(1.2);
+}
+
+.footer-menu {
+  float: right;
+  padding: 10px;
+  text-decoration: underline;
+}
+
+
+.footer-menu ul {
+  display: flex;
+}
+
+.footer-menu ul li {
+  padding-right: 10px;
+  display: block;
+}
+
+
+.footer-menu ul li a {
+  color: #0e3567;
+  text-decoration: none;
+}
+
+.footer-menu ul li a:hover {
+  color: #27bcda;
+}
+
+.wavepoint {
+  position: relative;
+  display: block;
+  padding: 10px 30px;
+  border: 2px solid #00aeff;
+  text-transform: uppercase;
+  font-size: 18px;
+  letter-spacing: 4px;
+  color: #00aeff;
+  text-decoration: none;
+  overflow: hidden;
+
+}
+
+.wavespan {
+  position: relative;
+  z-index: 1;
+  transition: 1s;
+  color: antiquewhite;
+}
+
+.wave {
+  position: absolute;
+  top: calc(100% + 22px);
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #59d1ef;
+  transition: 1s;
+
+}
+
+a:hover .wave {
+  top: 0;
+}
+
+
+a.wave:before {
+  content: " ";
+  position: absolute;
+  top: -22;
+  left: 0;
+  width: 100%;
+  height: 22px;
+  background: url(wave.png);
+  animation: animate 0.5s linear infinite;
+}
+
+
+
+
+@keyframes animate {
+  0% {
+    background-position-x: 0;
+  }
+
+  100% {
+    background-position-x: 118px;
+  }
+}
+
+a.underline {
+  text-decoration: underline;
 }

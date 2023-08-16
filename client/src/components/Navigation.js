@@ -27,8 +27,8 @@ const Navigation = () => {
     return (
         <div className="nav">
             <Link className="home" to="/">Home</Link>
-            <Link to="/destinations">Destinations</Link>
-            <Link to="/contact">About Us</Link>
+            <Link className="destinations" to="/destinations">Destinations</Link>
+            <Link className='aboutUs' to="/contact">About Us</Link>
             <button className="logout" onClick={logoutUser}>LogOut</button>
             {!menu ?
                 <div onClick={() => setMenu(!menu)} className="menu">

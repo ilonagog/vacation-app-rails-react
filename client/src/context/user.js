@@ -15,7 +15,6 @@ function UserProvider({ children }) {
         fetch('/me')
             .then(res => res.json())
             .then(data => {
-
                 setUser(data)
                 console.log(data)
                 if (data.error) {
@@ -35,31 +34,34 @@ function UserProvider({ children }) {
                 setReviews(data)
             })
     }
-    console.log(reviews)
-
-    const addReview = (formData, destinationId) => {
-        fetch(`/destinations/${destinationId}/reviews`, {
+    // console.log(reviews)
+    const addReview = (input, id) => {
+        // const { id } = useParams()
+        // id = parseInt(id)
+        fetch(`/destinations/${id}/reviews`, {
             method: "POST",
             headers: {
                 "Accept": "application/json",
                 'Content-type': 'application/json'
             },
-            body: JSON.stringify(formData)
+            body: JSON.stringify(input)
         })
             .then(r => r.json())
             .then(data => {
                 console.log(data)
                 setReviews([...reviews, data])
-                navigate('/reviews')
+                navigate('/destinations')
             })
-
     }
+
+
+
 
     const login = (user) => {
         setUser(user)
         setLoggedIn(true)
-        navigate("/destinations")
         fetchReviews()
+        navigate("/destinations")
 
 
     }
@@ -75,7 +77,7 @@ function UserProvider({ children }) {
         setLoggedIn(true)
     }
     return (
-        <UserContext.Provider value={{ user, login, logout, signup, loggedIn, reviews, addReview }}>
+        <UserContext.Provider value={{ user, setUser, login, logout, signup, loggedIn, reviews, addReview }}>
             {children}
         </UserContext.Provider>
     )

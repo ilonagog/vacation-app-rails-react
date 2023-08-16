@@ -5,10 +5,11 @@ import ReviewCard from './ReviewCard'
 const Reviews = () => {
     const { reviews } = useContext(UserContext)
 
-    const reviewList = reviews.map(review => <ReviewCard key={review.key} review={review} />)
+    const reviewList = reviews.map(reviewOne => <ReviewCard key={reviewOne.key} review={reviewOne} />)
     return (
         <div>
-            {reviewList}
+            <ul> {reviewList}</ul>
+
         </div>
     )
 }

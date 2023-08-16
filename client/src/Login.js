@@ -2,7 +2,7 @@ import { useState, useContext } from 'react'
 import { UserContext } from './context/user'
 import mobiscroll from '@mobiscroll/react-lite';
 import "@mobiscroll/react-lite/dist/css/mobiscroll.min.css";
-import Signup from './Signup';
+// import Signup from './Signup';
 
 function Login() {
     const [username, setUsername] = useState("");
@@ -47,7 +47,6 @@ function Login() {
     return (
         <>
             <div className='form'>
-
                 <mobiscroll.Form theme="mobiscroll" onSubmit={handleSubmit} className='form'>
                     <div className="mbsc-row">
                         <div className="mbsc-col-12 mbsc-col-md-6 mbsc-col-lg-3">
@@ -67,7 +66,7 @@ function Login() {
                                 labelStyle="floating"
                                 type="password"
                                 passwordToggle="true"
-                                placeholder="Set a password"
+                                placeholder="Enter your password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             >

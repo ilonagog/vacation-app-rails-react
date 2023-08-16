@@ -9,10 +9,11 @@ import Navigation from './components/Navigation';
 import Login from './Login';
 import Signup from './Signup';
 import Contact from './components/Contact';
-import DestinationDetails from './components/DestinationDetails';
+// import DestinationDetails from './components/DestinationDetails';
 import Reviews from './components/Reviews';
 import UserProfile from './components/UserProfile';
 import NewReview from './components/NewReview';
+import Footer from './components/Footer';
 
 function App() {
   const [destinations, setDestinations] = useState([])
@@ -29,7 +30,7 @@ function App() {
       })
   }, [])
 
-  const addDestination = (destination) => setDestinations(current => [...current, destination])
+  const addDestination = (newDestination) => setDestinations([...destinations, newDestination])
 
   if (errors) return <h1>{errors}</h1>
   return (
@@ -39,18 +40,21 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/destinations" element={<Destinations destinations={destinations} setDestinations={setDestinations} addDestination={addDestination} />} />
-        <Route path="/destination/:id" element={
+        {/* <Route path="/destination/:id" element={
           <>
             <DestinationDetails />
-            <NewReview />
-          </>} />
-        <Route path='/destinations/new' element={<AddDestinationForm addDestination={addDestination} setDestinations={setDestinations} />} />
+
+            {/* <NewReview /> */}
+
+        <Route path="/destination/:id/reviews" element={<NewReview destinations={destinations} setDestinations={setDestinations} />} />
+        <Route path='/destinations/new' element={<AddDestinationForm destinations={destinations} setDestinations={setDestinations} addDestination={addDestination} />} />
         <Route path="/reviews" element={<Reviews />} />
         <Route path="user/:id/reviews" element={<UserProfile />} />
         <Route path='/signup' element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
+      <Footer />
     </div>
 
   );
