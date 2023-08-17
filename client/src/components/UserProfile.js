@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { UserContext } from '../context/user'
 import ReviewCard from './ReviewCard'
 import { Button } from '@mobiscroll/react-lite';
@@ -6,13 +6,13 @@ import EditReview from './EditReview';
 
 
 const UserProfile = () => {
-    const { user, handleDelete, handleEdit } = useContext(UserContext)
+    const { user, handleDelete, handleEdit, reviews } = useContext(UserContext)
     const { username } = user
-    const [viewForm, setViewForm] = useState(false)
 
     const destinationNames = [...new Set(user.destinations.map((destination) => {
         return destination.name
     }))]
+
 
     return (
         <div className='container'>
@@ -34,10 +34,11 @@ const UserProfile = () => {
 
                         <div>
                             <ReviewCard key={review.id} review={review} />
-                            {viewForm ?
-                                <Button onClick={() => handleEdit(review.id)}>Edit review</Button>
-                                : <EditReview />
-                            }
+                            {/* {viewForm ? */}
+                            <EditReview handleEdit={handleEdit} review={reviews} />
+                            {/* //     :
+                            //     <Button onClick={() => handleEdit(review.id)}>Edit review</Button>
+                            // */}
                             <Button onClick={() => handleDelete(review.id)}>Delete Review</Button>
                         </div>
                     )

@@ -73,13 +73,13 @@ function UserProvider({ children }) {
 
 
 
-    function handleEdit(input, reviewId) {
-        fetch(`reviews/${reviewId}`, {
+    function handleEdit(review) {
+        fetch(`/reviews/${review.id}`, {
             method: "PATCH",
             headers: {
                 "Content-type": "application/json",
             },
-            body: JSON.stringify(input),
+            body: JSON.stringify(review)
         })
             .then(r => r.json())
             .then(editedReview => {
