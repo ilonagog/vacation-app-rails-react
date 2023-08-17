@@ -25,9 +25,11 @@ const Destination = ({ destination }) => {
     const reviewList = reviews.map((review) => {
         return (
             <div key={review.id}>
-                <p>Reviews:
-                    < br />{review.review}</p>
-                <p>Rating: {review.rating}/5</p>
+                <p className='reviewList'>Reviews:
+
+                    {review.review}
+                </p>
+                <p className='ratings'>Rating: {review.rating}/5</p>
             </div>
         )
     })
@@ -45,10 +47,10 @@ const Destination = ({ destination }) => {
                                     <Card.Img variant="top" src={image} />
                                     <Card.Body>
                                         <Card.Title><Link to={`/destination/${id}`}> <h3>{name}</h3></Link></Card.Title>
-                                        <Card.Text><p>{description}</p>
+                                        <Card.Text>{description}
                                         </Card.Text>
-                                        <Card.Footer> <span className="bi bi-geo-alt-fill"></span> <p>{location}</p></Card.Footer>
-                                        <Card.Footer><p>$ {price}</p></Card.Footer>
+                                        <Card.Footer> <span className="bi bi-geo-alt-fill"></span> {location}</Card.Footer>
+                                        <Card.Footer>$ {price}</Card.Footer>
                                         {/* <Card.Footer>Reviews:</Card.Footer> */}
                                         {/* <Card.Subtitle>{user.username}'s reviews:</Card.Subtitle> */}
                                         <Card.Text>{reviewList}</Card.Text>
@@ -76,9 +78,9 @@ const Destination = ({ destination }) => {
                                     <Card.Body>
                                         <Card.Title><Link to={`/destination/${id}`}> <h3>{name}</h3></Link></Card.Title>
                                         <Card.Text>
-                                            <p>{description}</p>
+                                            {description}
                                         </Card.Text>
-                                        <Card.Footer> <span className="bi bi-geo-alt-fill"></span> <p>{location}</p>  </Card.Footer>
+                                        <Card.Footer> <span className="bi bi-geo-alt-fill"></span> {location}  </Card.Footer>
                                         <Card.Footer>$ {price}</Card.Footer>
                                         <Link className="underline" to="/login">Login and leave your review</Link>
                                     </Card.Body>

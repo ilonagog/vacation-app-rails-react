@@ -8,11 +8,11 @@ import { useNavigate } from 'react-router-dom';
 
 
 const NewReview = ({ destinations, setDestinations }) => {
+    const { user, setUser } = useContext(UserContext)
     let { id } = useParams()
     id = parseInt(id)
-    const { user, setUser } = useContext(UserContext)
     const navigate = useNavigate()
-    let destination = destinations.find((destination) => {
+    let destination = destinations.filter((destination) => {
         return destination.id === id
     })
 
@@ -22,7 +22,7 @@ const NewReview = ({ destinations, setDestinations }) => {
     // const [rating, setRating] = useState("")
     const [input, setInput] = useState({
         review: "",
-        // rating: ""
+        rating: ""
     })
     const handleChange = (e) => {
         console.log(e.target.value)
@@ -57,28 +57,11 @@ const NewReview = ({ destinations, setDestinations }) => {
                     ],
                     destinations: [destination, ...user.destinations]
                 })
-                const newDestinations = destinations.map(d => d.id === newReview.destination_id ? newReview : d)
-                // const updatedDestinations = destinations.map((destination) => {
-                //     if (destination.id === id) {
-                //         let totalReviews = ((destination.reviews.reduce((acc, currentValue) => acc + currentValue.rating, 0)) + newReview.rating)
-
-                //         let numberOfReviews = destination.number_reviews + 1
-                //         return ({
-                //             ...destination,
-                //             number_reviews: numberOfReviews,
-                //             reviews: [newReview, ...destination.reviews],
-                //             average_rating: Math.round(totalReviews / numberOfReviews * 10) / 10
-                //         })
-                //     } else {
-                //         return destination
-                //     }
-                // })
                 console.log(newReview)
-                setDestinations(newDestinations)
-                // setReviews([...reviews, data])
-                navigate(`/destinations`)
+                setDestinations(newReview)
+                navigate('/destinations')
             })
-        // setInput("")
+        setInput("")
         // addReview(input, id)
     }
     // setReview("")
@@ -101,7 +84,7 @@ const NewReview = ({ destinations, setDestinations }) => {
                             Review:
                         </mobiscroll.Input>
                     </div>
-                    {/* <div className="mbsc-col-12 mbsc-col-md-6 mbsc-col-lg-3">
+                    <div className="mbsc-col-12 mbsc-col-md-6 mbsc-col-lg-3">
                         <mobiscroll.Input
                             inputStyle="box"
                             labelStyle="floating"
@@ -112,7 +95,7 @@ const NewReview = ({ destinations, setDestinations }) => {
                         >
                             Rate:
                         </mobiscroll.Input>
-                    </div> */}
+                    </div>
                     <mobiscroll.Button type="submit">Submit</mobiscroll.Button>
                 </div>
             </mobiscroll.Form>

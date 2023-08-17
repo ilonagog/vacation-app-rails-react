@@ -401,3 +401,11 @@ a.wave:before {
 a.underline {
   text-decoration: underline;
 }
+
+.reviewList {
+  display: flex;
+}
+
+.ratings {
+  display: block;
+}

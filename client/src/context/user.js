@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 const UserContext = React.createContext();
 
 function UserProvider({ children }) {
-    const [user, setUser] = useState(null)
+    const [user, setUser] = useState({})
     const [loggedIn, setLoggedIn] = useState(false)
     const [reviews, setReviews] = useState([])
     const navigate = useNavigate()
@@ -35,26 +35,65 @@ function UserProvider({ children }) {
             })
     }
     // console.log(reviews)
-    const addReview = (input, id) => {
-        // const { id } = useParams()
-        // id = parseInt(id)
-        fetch(`/destinations/${id}/reviews`, {
-            method: "POST",
+    // const addReview = (input, id) => {
+    //     // const { id } = useParams()
+    //     // id = parseInt(id)
+    //     fetch(`/destinations/${id}/reviews`, {
+    //         method: "POST",
+    //         headers: {
+    //             "Accept": "application/json",
+    //             'Content-type': 'application/json'
+    //         },
+    //         body: JSON.stringify(input)
+    //     })
+    //         .then(r => r.json())
+    //         .then(data => {
+    //             console.log(data)
+    //             setReviews([...reviews, data])
+    //             navigate('/destinations')
+    //         })
+    // }
+    function handleDelete(reviewId) {
+        fetch(`/reviews/${reviewId}`, {
+            method: "DELETE"
+        })
+            .then(() => {
+                const updatedReviews = reviews.filter(review => review.id !== reviewId)
+                setReviews(updatedReviews)
+            })
+    }
+    //         .then((deleteReviews) =>
+    //             handleDeleteReviews(deleteReviews))
+    // }
+
+    // const handleDeleteReviews = (deleteReviews) => {
+    //     const filteredReviews = [...reviews].filter(res => res.id !== deleteReviews.id)
+    //     setReviews(filteredReviews)
+    // }
+
+
+
+    function handleEdit(input, reviewId) {
+        fetch(`reviews/${reviewId}`, {
+            method: "PATCH",
             headers: {
-                "Accept": "application/json",
-                'Content-type': 'application/json'
+                "Content-type": "application/json",
             },
-            body: JSON.stringify(input)
+            body: JSON.stringify(input),
         })
             .then(r => r.json())
-            .then(data => {
-                console.log(data)
-                setReviews([...reviews, data])
-                navigate('/destinations')
+            .then(editedReview => {
+                onEdit(editedReview)
+                navigate("/destinations")
             })
     }
 
+    const onEdit = (updatedReviews) => {
+        const reviewUpdated = [...reviews].filter(res => res.id !== updatedReviews.id)
+        const updatedR = [...reviewUpdated, updatedReviews]
+        setReviews(updatedR)
 
+    }
 
 
     const login = (user) => {
@@ -77,7 +116,7 @@ function UserProvider({ children }) {
         setLoggedIn(true)
     }
     return (
-        <UserContext.Provider value={{ user, setUser, login, logout, signup, loggedIn, reviews, addReview }}>
+        <UserContext.Provider value={{ user, setUser, login, logout, signup, loggedIn, reviews, handleDelete, handleEdit }}>
             {children}
         </UserContext.Provider>
     )

@@ -1,5 +1,5 @@
 class DestinationsController < ApplicationController
-    before_action :find_production, only: [:show]
+    # before_action :authorize, only: [:index]
 
     def index
         render json: Destination.all, status: :ok
