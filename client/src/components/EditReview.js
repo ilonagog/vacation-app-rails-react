@@ -3,41 +3,31 @@ import { UserContext } from '../context/user'
 import { Button } from '@mobiscroll/react-lite'
 import mobiscroll from '@mobiscroll/react-lite';
 import "@mobiscroll/react-lite/dist/css/mobiscroll.min.css";
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
-const EditReview = ({ reviews, destination }) => {
+const EditReview = ({ review }) => {
     const [viewForm, setViewForm] = useState(false)
     const { handleEdit } = useContext(UserContext)
-    // const { reviewId } = useParams()
+    const [input, setInput] = useState({
+        review: review.review,
+        rating: review.rating
+    })
+    const handleChange = (e) => {
+        console.log(e.target.value)
 
-
-    const [review, setReview] = useState(review.review)
-    const [rating, setRating] = useState(review.rating)
-    // const [input, setInput] = useState({
-    //     review: "",
-    //     rating: ""
-    // })
-    // const handleChange = (e) => {
-    //     console.log(e.target.value)
-    //     setInput({
-    //         ...input,
-    //         [e.target.name]: e.target.value
-    //     })
-    // }
-
+        setInput({
+            ...input,
+            [e.target.name]: e.target.value
+        })
+    }
 
     const handleSubmit = (e) => {
         console.log("clicked")
         e.preventDefault()
-        const editedReviewArray = {
-            ...review,
-            destination_is: destination.id,
-            review: review,
-            rating: rating
-        }
-        handleEdit(editedReviewArray)
-        // handleEdit(input, reviewId)
+
+
+        handleEdit(review.id, input)
         // setInput("")
         setViewForm()
 
@@ -59,8 +49,8 @@ const EditReview = ({ reviews, destination }) => {
                                     labelStyle="floating"
                                     placeholder="Write your review"
                                     name="review"
-                                    value={review}
-                                    onChange={(e) => setReview(e.target.value)}
+                                    value={input.review}
+                                    onChange={handleChange}
                                 >
                                     Review:
                                 </mobiscroll.Input>
@@ -71,8 +61,8 @@ const EditReview = ({ reviews, destination }) => {
                                     labelStyle="floating"
                                     placeholder="Rate your trip"
                                     name="rating"
-                                    value={rating}
-                                    onChange={(e) => setRating(e.target.value)}
+                                    value={input.rating}
+                                    onChange={handleChange}
                                 >
                                     Rate:
                                 </mobiscroll.Input>
@@ -89,3 +79,5 @@ const EditReview = ({ reviews, destination }) => {
 }
 
 export default EditReview
+
+

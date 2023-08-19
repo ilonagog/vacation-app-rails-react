@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
     # before_action :authorize
     # skip_before_action :authorize, only: [:index, :show]
+    wrap_parameters format: []
     def index
         reviews = Review.all
         render json: reviews
@@ -19,6 +20,7 @@ class ReviewsController < ApplicationController
     end
 
 def update
+    # byebug
     user = find_by_session_id
     review = Review.find_by(id: params[:id])
     review.update(review_params)
@@ -27,10 +29,11 @@ end
 
     def destroy
         # byebug
-        # user = find_by_session_id
+        user = find_by_session_id
         # review = user.reviews.find_by(id: params[:id])
-        review = Review.find_by(id: params[:id])
+        review = Review.find(params[:id])
         review.destroy
+        head :no_content
     end
 
 
@@ -41,6 +44,6 @@ end
     end
 
     def review_params
-        params.permit( :id, :review_id, :user_id, :destination_id, :review, :rating)
+        params.permit( :user_id, :destination_id, :review, :rating)
     end
 end

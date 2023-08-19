@@ -4,10 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
-// import NewReview from './NewReview';
 import { UserContext } from '../context/user';
-// import ReviewCard from './ReviewCard';
-// import AddDestinationForm from './AddDestinationForm';
 import { Button } from '@mobiscroll/react-lite';
 import NewReview from './NewReview';
 
@@ -15,9 +12,7 @@ import NewReview from './NewReview';
 
 const Destination = ({ destination }) => {
     const { name, location, image, description, price, id, reviews } = destination
-    // const destinationId = { id }
     const { loggedIn } = useContext(UserContext)
-    // const { user } = useContext(UserContext)
     const [viewForm, setViewForm] = useState(false)
     const handleClick = (e) => {
         setViewForm(true)
@@ -25,17 +20,14 @@ const Destination = ({ destination }) => {
     const reviewList = reviews.map((review) => {
         return (
             <div key={review.id}>
-                <p className='reviewList'>Reviews:
-
-                    {review.review}
+                <p className='reviewList'>Reviews:  {review.review}
                 </p>
-                <p className='ratings'>Rating: {review.rating}/5</p>
+                <p className='ratings'>Rating:  {review.rating}/5</p>
             </div>
         )
     })
 
 
-    // console.log(destination)
     if (loggedIn) {
         return (
             <section id="des" className='block des-block'>
@@ -51,8 +43,7 @@ const Destination = ({ destination }) => {
                                         </Card.Text>
                                         <Card.Footer> <span className="bi bi-geo-alt-fill"></span> {location}</Card.Footer>
                                         <Card.Footer>$ {price}</Card.Footer>
-                                        {/* <Card.Footer>Reviews:</Card.Footer> */}
-                                        {/* <Card.Subtitle>{user.username}'s reviews:</Card.Subtitle> */}
+                                        <hr />
                                         <Card.Text>{reviewList}</Card.Text>
                                         {viewForm ?
                                             <NewReview />
@@ -82,6 +73,8 @@ const Destination = ({ destination }) => {
                                         </Card.Text>
                                         <Card.Footer> <span className="bi bi-geo-alt-fill"></span> {location}  </Card.Footer>
                                         <Card.Footer>$ {price}</Card.Footer>
+                                        <hr />
+                                        <Card.Text>{reviewList}</Card.Text>
                                         <Link className="underline" to="/login">Login and leave your review</Link>
                                     </Card.Body>
                                 </Card>
@@ -90,12 +83,9 @@ const Destination = ({ destination }) => {
                     </Row>
                 </Container>
             </section>
-
-
         )
     }
 }
-
 
 
 export default Destination

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-    # skip_before_action :authorize
+    # skip_before_action :authenticate_user, only: [:create]
+    wrap_parameters format: []
     def index 
         users.User.all
         render json: users

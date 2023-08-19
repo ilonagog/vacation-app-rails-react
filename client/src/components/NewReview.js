@@ -16,10 +16,6 @@ const NewReview = ({ destinations, setDestinations }) => {
         return destination.id === id
     })
 
-
-    // const { reviews, setReviews } = useContext(UserContext)
-    // const [review, setReview] = useState("")
-    // const [rating, setRating] = useState("")
     const [input, setInput] = useState({
         review: "",
         rating: ""
@@ -32,14 +28,8 @@ const NewReview = ({ destinations, setDestinations }) => {
         })
     }
 
-
-
-
-
     const handleSubmit = (e) => {
         e.preventDefault()
-        // const { id } = useParams()
-        // id = parseInt(id)
         fetch(`/destinations/${id}/reviews`, {
             method: "POST",
             headers: {
@@ -62,10 +52,8 @@ const NewReview = ({ destinations, setDestinations }) => {
                 navigate('/destinations')
             })
         setInput("")
-        // addReview(input, id)
+
     }
-    // setReview("")
-    // setRating("")
 
     return (
         <div>

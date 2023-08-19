@@ -13,33 +13,15 @@ const Destinations = ({ destinations, addDestination }) => {
         setViewForm(true)
         console.log("clicked")
     }
-    // const addDestination = (destination) => {
-    //     fetch('/destinations', {
-    //         method: "POST",
-    //         headers: { "Content-type": "application/json" },
-    //         body: JSON.stringify({ ...formData })
-    //     })
-    //         .then(res => {
-    //             if (res.ok) {
-    //                 res.json().then(addDestination)
-    //             } else {
-    //                 res.json().then(data => {
-    //                     setErrors(Object.entries(data.errors))
-    //                 })
-    //             }
-    //         })
-    // }
     return (
         <div>
             <Link to="/destinations/new"> <Button onClick={handleClick}>Add New Property</Button></Link>
             {viewForm ?
                 <AddDestinationForm setViewForm={setViewForm} addDestination={addDestination} />
-
                 :
                 <ul>{destinationsList}</ul>
             }
         </div>
-
     )
 }
 

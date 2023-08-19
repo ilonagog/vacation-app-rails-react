@@ -5,12 +5,12 @@ Rails.application.routes.draw do
   # end
 
   
-  # resources :reviews
+  # resources :reviews, only: [:index, :show, :create, :update, :destroy]
 
 get "/reviews", to: "reviews#index"
 delete "/reviews/:id", to: "reviews#destroy"
 post "/destinations/:destination_id/reviews", to: "reviews#create"
-patch "/reviews/:id", to: "reviews#update"
+patch "/reviews/:destination_id/reviews/:id", to: "reviews#update"
 
 
   # resources :users

@@ -29,10 +29,10 @@ const Signup = () => {
                 if (!user.errors) {
                     console.log(user)
                     signup(user)
-                    setUsername("")
-                    setPassword("")
                     navigate('/destinations')
                 } else {
+                    setUsername("")
+                    setPassword("")
                     const errorLis = user.errors.map(e => <li>{e}</li>)
                     setErrors(errorLis)
                 }

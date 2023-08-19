@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 const UserContext = React.createContext();
 
 function UserProvider({ children }) {
@@ -10,18 +9,22 @@ function UserProvider({ children }) {
     const [loggedIn, setLoggedIn] = useState(false)
     const [reviews, setReviews] = useState([])
     const navigate = useNavigate()
+    const [currentUser, setCurrentUser] = useState(false)
+
+    const updatedUser = (user) => setCurrentUser(user)
+    console.log(currentUser)
 
     useEffect(() => {
         fetch('/me')
             .then(res => res.json())
             .then(data => {
-                setUser(data)
-                console.log(data)
                 if (data.error) {
                     setLoggedIn(false)
+                    setCurrentUser({})
                 } else {
                     setLoggedIn(true)
-                    fetchReviews()
+                    setCurrentUser(data)
+                    fetchReviews(data.reviews)
                 }
             })
     }, [])
@@ -34,25 +37,8 @@ function UserProvider({ children }) {
                 setReviews(data)
             })
     }
-    // console.log(reviews)
-    // const addReview = (input, id) => {
-    //     // const { id } = useParams()
-    //     // id = parseInt(id)
-    //     fetch(`/destinations/${id}/reviews`, {
-    //         method: "POST",
-    //         headers: {
-    //             "Accept": "application/json",
-    //             'Content-type': 'application/json'
-    //         },
-    //         body: JSON.stringify(input)
-    //     })
-    //         .then(r => r.json())
-    //         .then(data => {
-    //             console.log(data)
-    //             setReviews([...reviews, data])
-    //             navigate('/destinations')
-    //         })
-    // }
+
+
     function handleDelete(reviewId) {
         fetch(`/reviews/${reviewId}`, {
             method: "DELETE"
@@ -62,24 +48,14 @@ function UserProvider({ children }) {
                 setReviews(updatedReviews)
             })
     }
-    //         .then((deleteReviews) =>
-    //             handleDeleteReviews(deleteReviews))
-    // }
 
-    // const handleDeleteReviews = (deleteReviews) => {
-    //     const filteredReviews = [...reviews].filter(res => res.id !== deleteReviews.id)
-    //     setReviews(filteredReviews)
-    // }
-
-
-
-    function handleEdit(review) {
-        fetch(`/reviews/${review.id}`, {
+    function handleEdit(reviewId, updatedInfo) {
+        fetch(`/reviews/${reviewId}`, {
             method: "PATCH",
             headers: {
                 "Content-type": "application/json",
             },
-            body: JSON.stringify(review)
+            body: JSON.stringify(updatedInfo),
         })
             .then(r => r.json())
             .then(editedReview => {
@@ -92,31 +68,30 @@ function UserProvider({ children }) {
         const reviewUpdated = [...reviews].filter(res => res.id !== updatedReviews.id)
         const updatedR = [...reviewUpdated, updatedReviews]
         setReviews(updatedR)
-
     }
 
 
-    const login = (user) => {
-        setUser(user)
+    const login = (currentUser) => {
+        setCurrentUser(currentUser)
+        // setUser(user)
         setLoggedIn(true)
         fetchReviews()
         navigate("/destinations")
-
-
     }
 
     const logout = () => {
-        setUser({})
+        // setUser({})
+        setCurrentUser({})
         setLoggedIn(false)
-
     }
 
-    const signup = (user) => {
-        setUser(user)
+    const signup = (currentUser) => {
+        setCurrentUser(currentUser)
+        // setUser(user)
         setLoggedIn(true)
     }
     return (
-        <UserContext.Provider value={{ user, setUser, login, logout, signup, loggedIn, reviews, handleDelete, handleEdit }}>
+        <UserContext.Provider value={{ currentUser, setCurrentUser, user, updatedUser, setUser, login, logout, signup, loggedIn, reviews, handleDelete, handleEdit }}>
             {children}
         </UserContext.Provider>
     )

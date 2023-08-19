@@ -12,14 +12,10 @@ const AddDestinationForm = ({ addDestination, setViewForm, setDestinations }) =>
     description: "",
     price: ""
   })
-  // const { name, location, image, description, price } = input
+
   const navigate = useNavigate()
 
-  // const [errors, setErrors] = useState([])
-
   const handleChange = (e) => {
-    // console.log(e.target.value)
-    // const { name, value } = e.target
     setInput({
       ...input,
       [e.target.name]: e.target.value
@@ -38,22 +34,9 @@ const AddDestinationForm = ({ addDestination, setViewForm, setDestinations }) =>
       .then(newDestination => {
         console.log(newDestination)
         addDestination(newDestination)
-        // setDestinations(newDestination)
         navigate("/destinations")
       })
   }
-
-
-  //     .then(res =>
-  //       res.json())
-  //     .then((newDestination) => {
-  //       setDestinations([
-  //         ...destinations, newDestination
-  //       ])
-  //       navigate("/destinations")
-  //     })
-  // }
-
 
   return (
     <div className='form-add'>
@@ -105,7 +88,6 @@ const AddDestinationForm = ({ addDestination, setViewForm, setDestinations }) =>
               name="description"
               value={input.description}
               onChange={handleChange}
-
             >
               Description:
             </mobiscroll.Input>
