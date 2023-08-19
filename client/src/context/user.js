@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 const UserContext = React.createContext();
@@ -10,7 +8,6 @@ function UserProvider({ children }) {
     const [reviews, setReviews] = useState([])
     const navigate = useNavigate()
     const [currentUser, setCurrentUser] = useState(false)
-
     const updatedUser = (user) => setCurrentUser(user)
     console.log(currentUser)
 
@@ -49,13 +46,13 @@ function UserProvider({ children }) {
             })
     }
 
-    function handleEdit(reviewId, updatedInfo) {
-        fetch(`/reviews/${reviewId}`, {
+    function handleEdit(review, input) {
+        fetch(`/reviews/${review.id}`, {
             method: "PATCH",
             headers: {
                 "Content-type": "application/json",
             },
-            body: JSON.stringify(updatedInfo),
+            body: JSON.stringify(input),
         })
             .then(r => r.json())
             .then(editedReview => {

@@ -29,7 +29,9 @@ function Login() {
                     r.json().then((userInfo) => login(userInfo))
                     navigate("/")
                 } else {
-                    r.json().then((errorList) => setErrors(errorList.errors))
+                    const errorList = errors.map((error) => (error = { error }
+                    ))
+                    setErrors(errorList)
                 }
             })
     }
@@ -68,10 +70,7 @@ function Login() {
                 </mobiscroll.Form>
             </div>
             <ul>
-                {errors.map((error) => (
-                    <li key={error}>{error}</li>
-                ))}
-                {/* <h3>{errors}</h3> */}
+                <li>{errors}</li>
             </ul>
         </>
     );

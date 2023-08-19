@@ -33,7 +33,7 @@ const Navigation = () => {
                         <RxDropdownMenu size={30} />
                     </div> :
                     <ul>
-                        <li><Link to={`/users/${id}/reviews`}>Profile</Link></li>
+                        <li><Link to={`/user/${id}/reviews`}>Profile</Link></li>
                         {currentUser ?
                             <button className="logout" onClick={logoutUser}>LogOut</button>
                             : null

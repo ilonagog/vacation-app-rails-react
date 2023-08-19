@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-    # skip_before_action :authenticate_user, only: [:create, :destroy]
+    # skip_before_action :authorize, only: [:create, :destroy]
     wrap_parameters format: []
     # log in
     def create 

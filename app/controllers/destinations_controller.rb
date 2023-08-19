@@ -1,5 +1,5 @@
 class DestinationsController < ApplicationController
-    # skip_before_action :authenticate_user
+    # skip_before_action :authorize
     # before_action :authorize, only: [:index]
     wrap_parameters format: []
 
