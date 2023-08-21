@@ -20,8 +20,11 @@ const Destination = ({ destination }) => {
     const reviewList = reviews.map((review) => {
         return (
             <div key={review.id}>
-                <p className='reviewList'>Reviews:  {review.review}
+                <p>{review.username}</p>
+                <p className='reviewList'>Review:  {review.review}
+
                 </p>
+
                 <p className='ratings'>Rating:  {review.rating}/5</p>
             </div>
         )

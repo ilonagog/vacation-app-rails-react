@@ -44,7 +44,7 @@ function App() {
         <Route path="/destination/:id/reviews" element={<NewReview destinations={destinations} setDestinations={setDestinations} />} />
         <Route path='/destinations/new' element={<AddDestinationForm destinations={destinations} setDestinations={setDestinations} addDestination={addDestination} />} />
         <Route path="/reviews" element={<Reviews />} />
-        <Route path="/user/:id/reviews" element={<UserProfile destinations={destinations} />} />
+        <Route path="/users/destinations" element={<UserProfile destinations={destinations} />} />
         <Route path='/signup' element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/contact" element={<Contact />} />

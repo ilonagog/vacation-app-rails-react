@@ -3,9 +3,9 @@ import { UserContext } from '../context/user'
 import ReviewCard from './ReviewCard'
 
 const Reviews = () => {
-    const { reviews, handleDelete } = useContext(UserContext)
+    const { reviews } = useContext(UserContext)
 
-    const reviewList = reviews.map(review => <ReviewCard key={review.key} review={review} handleDelete={handleDelete} />)
+    const reviewList = reviews.map(review => <ReviewCard key={review.key} review={review} />)
     return (
         <div>
             <ul> {reviewList}</ul>
