@@ -12,9 +12,9 @@ const NewReview = ({ destinations, setDestinations }) => {
     let { id } = useParams()
     id = parseInt(id)
     const navigate = useNavigate()
-    let destination = destinations.filter((destination) => {
-        return destination.id === id
-    })
+    // let destination = destinations.filter((destination) => {
+    //     return destination.id === id
+    // })
 
     const [input, setInput] = useState({
         review: "",
@@ -36,23 +36,21 @@ const NewReview = ({ destinations, setDestinations }) => {
                 "Accept": "application/json",
                 'Content-type': 'application/json'
             },
-            body: JSON.stringify(input)
+            body: JSON.stringify({ ...input, user_id: user.id })
         })
             .then(r => r.json())
             .then(newReview => {
-                setUser({
-                    ...user,
-                    reviews: [
-                        newReview, ...user.reviews
-                    ],
-                    destinations: [destination, ...user.destinations]
-                })
+
+                // setUser({
+                //     ...user,
+                //     reviews: [newReview, ...user.reviews],
+                //     destinations: [destination, ...user.destinations]
+                // })
                 console.log(newReview)
                 setDestinations(newReview)
                 navigate('/destinations')
             })
         setInput("")
-
     }
 
     return (

@@ -4,10 +4,13 @@ import { Link } from 'react-router-dom'
 import AddDestinationForm from './AddDestinationForm'
 import Destination from './Destination'
 
-const Destinations = ({ destinations, addDestination }) => {
+const Destinations = ({ destinations, setDestinations, addDestination }) => {
     const [viewForm, setViewForm] = useState(false)
 
-    const destinationsList = destinations.map((destination) => (<Destination key={destination.id} destination={destination} />))
+    const destinationsList = destinations.map((destination) => {
+
+        return (<Destination key={destination.id} destination={destination} />)
+    })
 
     const handleClick = (e) => {
         setViewForm(true)
@@ -17,10 +20,11 @@ const Destinations = ({ destinations, addDestination }) => {
         <div>
             <Link to="/destinations/new"> <Button onClick={handleClick}>Add New Property</Button></Link>
             {viewForm ?
-                <AddDestinationForm setViewForm={setViewForm} addDestination={addDestination} />
+                <AddDestinationForm setViewForm={setViewForm} addDestination={addDestination} destinations={destinations} setDestinations={setDestinations} />
                 :
                 <ul>{destinationsList}</ul>
             }
+            {destinationsList}
         </div>
     )
 }

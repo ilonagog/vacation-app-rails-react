@@ -7,9 +7,10 @@ function UserProvider({ children }) {
     const [loggedIn, setLoggedIn] = useState(false)
     const [reviews, setReviews] = useState([])
     const navigate = useNavigate()
-    const [currentUser, setCurrentUser] = useState(false)
-    const updatedUser = (user) => setCurrentUser(user)
-    console.log(currentUser)
+    // const [currentUser, setCurrentUser] = useState(false)
+    // const updatedUser = (user) => setCurrentUser(user)
+    // console.log(currentUser)
+
 
     useEffect(() => {
         fetch('/me')
@@ -17,14 +18,15 @@ function UserProvider({ children }) {
             .then(data => {
                 if (data.error) {
                     setLoggedIn(false)
-                    setCurrentUser({})
+
                 } else {
                     setLoggedIn(true)
-                    setCurrentUser(data)
+                    setUser(user)
                     fetchReviews(data.reviews)
                 }
             })
     }, [])
+    console.log(user)
 
     const fetchReviews = () => {
         fetch("/reviews")
@@ -68,27 +70,29 @@ function UserProvider({ children }) {
     }
 
 
-    const login = (currentUser) => {
-        setCurrentUser(currentUser)
-        // setUser(user)
+    const login = (user) => {
+        // setCurrentUser(currentUser)
+        setUser(user)
         setLoggedIn(true)
         fetchReviews()
         navigate("/destinations")
     }
 
     const logout = () => {
-        // setUser({})
-        setCurrentUser({})
+        setUser({})
+        // setCurrentUser({})
         setLoggedIn(false)
     }
 
-    const signup = (currentUser) => {
-        setCurrentUser(currentUser)
-        // setUser(user)
+    const signup = (user) => {
+        // setCurrentUser(currentUser)
+        setUser(user)
         setLoggedIn(true)
     }
+    console.log(user)
+
     return (
-        <UserContext.Provider value={{ currentUser, setCurrentUser, user, updatedUser, setUser, login, logout, signup, loggedIn, reviews, handleDelete, handleEdit }}>
+        <UserContext.Provider value={{ user, setUser, login, logout, signup, loggedIn, reviews, handleDelete, handleEdit }}>
             {children}
         </UserContext.Provider>
     )

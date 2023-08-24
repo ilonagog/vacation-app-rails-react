@@ -1,105 +1,42 @@
-
-// import React, { useContext, } from 'react'
-// import { UserContext } from '../context/user'
-// import { Button } from '@mobiscroll/react-lite';
-// import EditReview from './EditReview';
-// import ReviewCard from './ReviewCard'
-
-// const UserProfile = () => {
-//     const { user, handleDelete } = useContext(UserContext)
-//     const { username } = user
-
-//     return (
-//         <div className='container'>
-//             <p>Our Special User:</p>
-//             <h3>{username}</h3>
-//             <hr />
-//             <p>Visited:</p>
-//             <div>
-//                 {user.reviews.map((review) => {
-//                     return (
-//                         <li>
-//                             <h2>{review.destination.name}</h2>
-//                             <ReviewCard key={review.id} review={review} />
-//                             < EditReview review={review} />
-//                             < Button onClick={() => handleDelete(review.id)}>Delete Review</Button>
-//                         </li>
-//                     )
-//                 }
-//                 )}
-//             </div>
-//         </div >
-//     )
-// }
-
-// export default UserProfile
-
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import { UserContext } from '../context/user'
 import { Button } from '@mobiscroll/react-lite';
 import EditReview from './EditReview';
 import ReviewCard from './ReviewCard'
-import AddDestinationForm from './AddDestinationForm';
 import { Link } from 'react-router-dom';
 import Destination from './Destination';
 
 const UserProfile = () => {
-    const { user, loggedIn, handleDelete, reviews } = useContext(UserContext)
-    const { username } = user
-    const [userDestinations, setUserDestinations] = useState([])
+    const { user, handleDelete } = useContext(UserContext)
+    const { username, } = user
+    //  const reviews = user.reviews
 
-    useEffect(() => {
-        const myDestinations = user.destinations
-        if (myDestinations) {
-            setUserDestinations(myDestinations)
-        }
-    }, [user])
+    // const { rating, username, name } = review
 
-    const destList = userDestinations && userDestinations.map((destination) => (
-        <div>
-            <Destination />
-            <ReviewCard destination_id={destination.id} />
-        </div>
-    ))
-
-
-    return loggedIn ? (
+    console.log(user)
+    return (
         <div className='container'>
             <p>Our Special User:</p>
             <h3>{username}</h3>
-            <h1>My destinations</h1>
-            <div >{userDestinations?.length > 0 ? (
-                <div>{destList}</div>) : (
-                <div>
-                    <h3>Add your Destination</h3>
-                    <Link to={"/destinations/new"}>
-                        {<AddDestinationForm />}
-                    </Link>
-
-                    <Link to="/destinations">Rate destinations</Link>
-                    <ul>
-                        <li>
-
-                            {/* <h2>{review.destination.name}</h2> */}
-                            {reviews.map = (review => {
-                                <div>
-                                    <ReviewCard key={review.id} review={review} />
-                                    < EditReview review={review} />
-                                    < Button onClick={() => handleDelete(review.id)}>Delete Review</Button>
-                                </div>
-                            }
-                            )}
-                        </li>
-                    </ul>
-                </div>
-            )
-            }
-
-            </div>
+            <h3>My destinations</h3>
+            <ul>{user.reviews.map(review => (
+                <li>
+                    <h3>{review.destination.name}</h3>
+                    <ReviewCard key={review.id} review={review} />
+                    < EditReview review={review} />
+                    < Button onClick={() => handleDelete(review.id)}>Delete Review</Button>
+                </li>
+            ))}</ul>
+            <Link to="/destinations">Rate destinations</Link>
         </div>
-    ) : (
-        <p>Not authorized</p>
     )
+
+
+
+
 }
 
 export default UserProfile
+
+
+

@@ -8,7 +8,7 @@ import { BiSolidUserAccount } from 'react-icons/bi'
 
 const Navigation = () => {
     const [menu, setMenu] = useState(false)
-    const { currentUser, logout, loggedIn } = useContext(UserContext)
+    const { logout, loggedIn } = useContext(UserContext)
     const navigate = useNavigate()
     // const { id } = useParams()
 
@@ -21,7 +21,7 @@ const Navigation = () => {
             })
         navigate('/')
     }
-    console.log(currentUser)
+
     if (loggedIn) {
         return (
             <div className="nav">
@@ -34,10 +34,8 @@ const Navigation = () => {
                     </div> :
                     <ul>
                         <li><Link to="/users/destinations">Profile</Link></li>
-                        {currentUser ?
-                            <button className="logout" onClick={logoutUser}>LogOut</button>
-                            : null
-                        }
+                        <button className="logout" onClick={logoutUser}>LogOut</button>
+
                         <li onClick={() => setMenu(!menu)}><AiOutlineClose /></li>
                     </ul>
                 }

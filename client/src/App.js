@@ -28,15 +28,22 @@ function App() {
         }
       })
   }, [])
+  console.log(destinations)
 
   const addDestination = (newDestination) => setDestinations([...destinations, newDestination])
+  const errorList = () => {
 
-  if (errors) return <h1>{errors}</h1>
+    if (errors) {
+
+      return <h1>{errors}</h1>
+    }
+  }
 
 
   return (
 
     < div className="App" >
+      {/* <p>{errorList}</p> */}
       <Navigation />
       <Routes>
         <Route exact path="/" element={<Home />} />
@@ -44,7 +51,7 @@ function App() {
         <Route path="/destination/:id/reviews" element={<NewReview destinations={destinations} setDestinations={setDestinations} />} />
         <Route path='/destinations/new' element={<AddDestinationForm destinations={destinations} setDestinations={setDestinations} addDestination={addDestination} />} />
         <Route path="/reviews" element={<Reviews />} />
-        <Route path="/users/destinations" element={<UserProfile destinations={destinations} />} />
+        <Route path="/users/destinations" element={<UserProfile destinations={destinations} addDestination={addDestination} />} />
         <Route path='/signup' element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/contact" element={<Contact />} />
