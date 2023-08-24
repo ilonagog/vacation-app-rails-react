@@ -20,11 +20,9 @@ const Destination = ({ destination }) => {
     const reviewList = reviews.map((review) => {
         return (
             <div key={review.id}>
+
                 <p>{review.username}</p>
-                <p className='reviewList'>Review:  {review.review}
-
-                </p>
-
+                <p className='reviewList'>Review:  {review.review}</p>
                 <p className='ratings'>Rating:  {review.rating}/5</p>
             </div>
         )
@@ -47,7 +45,7 @@ const Destination = ({ destination }) => {
                                         <Card.Footer> <span className="bi bi-geo-alt-fill"></span> {location}</Card.Footer>
                                         <Card.Footer>$ {price}</Card.Footer>
                                         <hr />
-                                        <Card.Text>{reviewList}</Card.Text>
+                                        {reviewList}
                                         {viewForm ?
                                             <NewReview />
                                             : <Link to={`/destination/${id}/reviews`}><Button onClick={handleClick}>Add your review</Button></Link>}

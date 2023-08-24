@@ -43,7 +43,7 @@ function App() {
   return (
 
     < div className="App" >
-      {/* <p>{errorList}</p> */}
+      <p>{errorList()}</p>
       <Navigation />
       <Routes>
         <Route exact path="/" element={<Home />} />

@@ -8,7 +8,6 @@ const Destinations = ({ destinations, setDestinations, addDestination }) => {
     const [viewForm, setViewForm] = useState(false)
 
     const destinationsList = destinations.map((destination) => {
-
         return (<Destination key={destination.id} destination={destination} />)
     })
 
@@ -24,7 +23,6 @@ const Destinations = ({ destinations, setDestinations, addDestination }) => {
                 :
                 <ul>{destinationsList}</ul>
             }
-            {destinationsList}
         </div>
     )
 }

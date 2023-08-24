@@ -23,27 +23,27 @@ class ReviewsController < ApplicationController
         render json: newreview
     end
 
+def update
+    # byebug
+    user = find_by_session_id
+    review = Review.find_by(id: params[:id])
+    review.update(review_params)
+    render json: review
+end
 # def update
-#     # byebug
-#     user = find_by_session_id
-#     review = Review.find_by(id: params[:id])
+#     review = find_by_session_id
 #     review.update(review_params)
 #     render json: review
 # end
-def update
-    review = find_by_session_id
-    review.update!(review_params)
-    render json: review
-end
 
 
     def destroy
         # byebug
-        user = find_by_session_id
+        # user = find_by_session_id
         # review = user.reviews.find_by(id: params[:id])
         review = Review.find(params[:id])
         review.destroy
-        head :no_content
+        # head :no_content
     end
 
 
@@ -54,6 +54,6 @@ end
     end
 
     def review_params
-        params.require(:review).permit( :user_id, :destination_id, :review, :rating)
+        params.permit(:review, :rating, :user_id, :destination_id  )
     end
 end

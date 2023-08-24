@@ -12,9 +12,9 @@ const NewReview = ({ destinations, setDestinations }) => {
     let { id } = useParams()
     id = parseInt(id)
     const navigate = useNavigate()
-    // let destination = destinations.filter((destination) => {
-    //     return destination.id === id
-    // })
+    let destination = destinations.filter((destination) => {
+        return destination.id === id
+    })
 
     const [input, setInput] = useState({
         review: "",
@@ -40,17 +40,21 @@ const NewReview = ({ destinations, setDestinations }) => {
         })
             .then(r => r.json())
             .then(newReview => {
+                setUser({
+                    ...user,
+                    reviews: [
+                        newReview, ...user.reviews
+                    ],
+                    destinations: [destination, ...user.destinations]
+                })
+                const newDestinations = destinations.map(d => d.id === newReview.destination_id ? newReview : d)
 
-                // setUser({
-                //     ...user,
-                //     reviews: [newReview, ...user.reviews],
-                //     destinations: [destination, ...user.destinations]
-                // })
                 console.log(newReview)
-                setDestinations(newReview)
-                navigate('/destinations')
+                setDestinations(newDestinations)
+                // setReviews(newReview)
+                navigate(`/destinations`)
             })
-        setInput("")
+
     }
 
     return (

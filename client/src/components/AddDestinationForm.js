@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import mobiscroll from '@mobiscroll/react-lite';
 import "@mobiscroll/react-lite/dist/css/mobiscroll.min.css";
 
-const AddDestinationForm = ({ addDestination, setViewForm, setDestinations }) => {
+const AddDestinationForm = ({ addDestination }) => {
   const [input, setInput] = useState({
     name: "",
     location: "",

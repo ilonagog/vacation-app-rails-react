@@ -158,6 +158,7 @@ p {
 .des-block img {
   margin: 0 0 15px;
   width: 400px;
+  height: 350px;
 }
 
 .des-block .card-title {
@@ -408,4 +409,8 @@ a.underline {
 
 .ratings {
   display: block;
+}
+
+.country {
+  text-decoration: underline;
 }

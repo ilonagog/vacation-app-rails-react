@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 get "/reviews", to: "reviews#index"
 delete "/reviews/:id", to: "reviews#destroy"
 post "/destinations/:destination_id/reviews", to: "reviews#create"
-patch "/reviews/:destination_id/reviews/:id", to: "reviews#update"
+patch "/reviews/:id", to: "reviews#update"
 
 
   # resources :users

@@ -21,7 +21,7 @@ function UserProvider({ children }) {
 
                 } else {
                     setLoggedIn(true)
-                    setUser(user)
+                    setUser(data)
                     fetchReviews(data.reviews)
                 }
             })
@@ -44,7 +44,9 @@ function UserProvider({ children }) {
         })
             .then(() => {
                 const updatedReviews = reviews.filter(review => review.id !== reviewId)
-                setReviews(updatedReviews)
+                const updatedUser = { ...user, reviews: updatedReviews }
+                setUser(updatedUser)
+                // navigate("/destinations")
             })
     }
 
@@ -59,14 +61,16 @@ function UserProvider({ children }) {
             .then(r => r.json())
             .then(editedReview => {
                 onEdit(editedReview)
+
                 navigate("/destinations")
             })
     }
 
     const onEdit = (updatedReviews) => {
-        const reviewUpdated = [...reviews].filter(res => res.id !== updatedReviews.id)
+
+        const reviewUpdated = [...reviews].filter(review => review.id !== updatedReviews.id)
         const updatedR = [...reviewUpdated, updatedReviews]
-        setReviews(updatedR)
+        setUser(updatedR)
     }
 
 
@@ -89,7 +93,7 @@ function UserProvider({ children }) {
         setUser(user)
         setLoggedIn(true)
     }
-    console.log(user)
+    // console.log(user)
 
     return (
         <UserContext.Provider value={{ user, setUser, login, logout, signup, loggedIn, reviews, handleDelete, handleEdit }}>
