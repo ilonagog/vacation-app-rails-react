@@ -61,7 +61,7 @@ const Destination = ({ destination, setDestinations, destinations }) => {
                     <p>{review.username}</p>
                     <p className='reviewList'>Review:  {review.review}</p>
                     <p className='ratings'>Rating:  {review.rating}/5</p>
-                    {/* {user === user.id ? ( */}
+                    {/* {(loggedIn === user.id) ? ( */}
                     <div> <EditReview onEditReview={onEditReview} id={review.id} review={review} />
                         <Button onClick={() => handleDeleteReview(review)} >Delete Review</Button>
                     </div>
