@@ -147,7 +147,8 @@ p {
 
 .des-block .card {
   border: 0;
-  display: inline-flex;
+  display: grid;
+  justify-items: center;
 
 }
 
@@ -157,8 +158,8 @@ p {
 
 .des-block img {
   margin: 0 0 15px;
-  width: 400px;
-  height: 350px;
+  width: 450px;
+
 }
 
 .des-block .card-title {
@@ -193,7 +194,7 @@ p {
 }
 
 .mbsc-mobiscroll.mbsc-btn {
-  display: inline-flex;
+  display: inherit;
   margin-left: 140px;
   width: fit-content;
 }
@@ -413,4 +414,8 @@ a.underline {
 
 .country {
   text-decoration: underline;
+}
+
+.addreview {
+  display: flex;
 }

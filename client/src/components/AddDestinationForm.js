@@ -4,7 +4,10 @@ import { Link, useNavigate } from 'react-router-dom'
 import mobiscroll from '@mobiscroll/react-lite';
 import "@mobiscroll/react-lite/dist/css/mobiscroll.min.css";
 
+
 const AddDestinationForm = ({ addDestination }) => {
+  const [errors, setErrors] = useState([])
+  const navigate = useNavigate()
   const [input, setInput] = useState({
     name: "",
     location: "",
@@ -12,9 +15,6 @@ const AddDestinationForm = ({ addDestination }) => {
     description: "",
     price: ""
   })
-
-  const navigate = useNavigate()
-
   const handleChange = (e) => {
     setInput({
       ...input,
@@ -22,94 +22,110 @@ const AddDestinationForm = ({ addDestination }) => {
     })
   }
   console.log(input)
+
   const handleSubmit = (e) => {
     e.preventDefault()
-
+    const emptyInputData = () => {
+      for (const key of Object.keys(input)) {
+        if (input[key].length < 1) {
+          return false
+        }
+      }
+      return true
+    }
+    if (!emptyInputData()) return setErrors(["Please fill blank"])
     fetch('/destinations', {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(input)
     })
-      .then(res => res.json())
-      .then(newDestination => {
-        console.log(newDestination)
-        addDestination(newDestination)
-        navigate("/destinations")
+      .then(res => {
+        if (res.ok) {
+          res.json().then((newDestination) => {
+            console.log(newDestination)
+            addDestination(newDestination)
+            navigate("/destinations")
+          })
+        } else {
+          setErrors(errors)
+        }
       })
   }
 
   return (
-    <div className='form-add'>
-      <Button><Link to="/destinations">Back to our destinations</Link></Button>
-      <h3>Add new property!</h3>
-      <mobiscroll.Form theme="mobiscroll" onSubmit={handleSubmit}>
-        <div className="mbsc-row">
-          <div className="mbsc-col-12 mbsc-col-md-6 mbsc-col-lg-3">
-            <mobiscroll.Input
-              inputStyle="box"
-              labelStyle="floating"
-              placeholder="Enter property name"
-              name="name"
-              value={input.name}
-              onChange={handleChange}
-            >
-              Name:
-            </mobiscroll.Input>
+    <>
+      <div className='form-add'>
+        <Button><Link to="/destinations">Back to our destinations</Link></Button>
+        <h3>Add new property!</h3>
+        <mobiscroll.Form theme="mobiscroll" onSubmit={handleSubmit}>
+          <div className="mbsc-row">
+            <div className="mbsc-col-12 mbsc-col-md-6 mbsc-col-lg-3">
+              <mobiscroll.Input
+                inputStyle="box"
+                labelStyle="floating"
+                placeholder="Enter property name"
+                name="name"
+                value={input.name}
+                onChange={handleChange}
+              >
+                Name:
+              </mobiscroll.Input>
+            </div>
+            <div className="mbsc-col-12 mbsc-col-md-6 mbsc-col-lg-3">
+              <mobiscroll.Input
+                inputStyle="box"
+                labelStyle="floating"
+                placeholder="Enter property location"
+                name="location"
+                value={input.location}
+                onChange={handleChange}
+              >
+                Location:
+              </mobiscroll.Input>
+            </div>
+            <div className="mbsc-col-12 mbsc-col-md-6 mbsc-col-lg-3">
+              <mobiscroll.Input
+                inputStyle="box"
+                labelStyle="floating"
+                placeholder="Enter property image"
+                name="image"
+                value={input.image}
+                onChange={handleChange}
+              >
+                Image:
+              </mobiscroll.Input>
+            </div>
+            <div className="mbsc-col-12 mbsc-col-md-6 mbsc-col-lg-3">
+              <mobiscroll.Input
+                inputStyle="box"
+                labelStyle="floating"
+                placeholder="Enter property description"
+                name="description"
+                value={input.description}
+                onChange={handleChange}
+              >
+                Description:
+              </mobiscroll.Input>
+            </div>
+            <div className="mbsc-col-12 mbsc-col-md-6 mbsc-col-lg-3">
+              <mobiscroll.Input
+                inputStyle="box"
+                labelStyle="floating"
+                type="price"
+                placeholder="Set the price"
+                name="price"
+                value={input.price}
+                onChange={handleChange}
+              >
+                Price:
+              </mobiscroll.Input>
+            </div>
+            <mobiscroll.Button type="submit">Submit</mobiscroll.Button>
           </div>
-          <div className="mbsc-col-12 mbsc-col-md-6 mbsc-col-lg-3">
-            <mobiscroll.Input
-              inputStyle="box"
-              labelStyle="floating"
-              placeholder="Enter property location"
-              name="location"
-              value={input.location}
-              onChange={handleChange}
-            >
-              Location:
-            </mobiscroll.Input>
-          </div>
-          <div className="mbsc-col-12 mbsc-col-md-6 mbsc-col-lg-3">
-            <mobiscroll.Input
-              inputStyle="box"
-              labelStyle="floating"
-              placeholder="Enter property image"
-              name="image"
-              value={input.image}
-              onChange={handleChange}
-            >
-              Image:
-            </mobiscroll.Input>
-          </div>
-          <div className="mbsc-col-12 mbsc-col-md-6 mbsc-col-lg-3">
-            <mobiscroll.Input
-              inputStyle="box"
-              labelStyle="floating"
-              placeholder="Enter property description"
-              name="description"
-              value={input.description}
-              onChange={handleChange}
-            >
-              Description:
-            </mobiscroll.Input>
-          </div>
-          <div className="mbsc-col-12 mbsc-col-md-6 mbsc-col-lg-3">
-            <mobiscroll.Input
-              inputStyle="box"
-              labelStyle="floating"
-              type="price"
-              placeholder="Set the price"
-              name="price"
-              value={input.price}
-              onChange={handleChange}
-            >
-              Price:
-            </mobiscroll.Input>
-          </div>
-          <mobiscroll.Button type="submit">Submit</mobiscroll.Button>
-        </div>
-      </mobiscroll.Form>
-
-    </div>
+        </mobiscroll.Form>
+      </div>
+      {errors.length > 0 && (errors.map(error => <p key={error} style={{ color: 'red' }}>{error}</p>))}
+    </>
   )
 }
 

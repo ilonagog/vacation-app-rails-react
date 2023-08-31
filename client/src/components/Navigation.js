@@ -10,8 +10,6 @@ const Navigation = () => {
     const [menu, setMenu] = useState(false)
     const { logout, loggedIn } = useContext(UserContext)
     const navigate = useNavigate()
-    // const { id } = useParams()
-
     const logoutUser = () => {
         fetch("/logout", {
             method: "DELETE"
@@ -35,7 +33,6 @@ const Navigation = () => {
                     <ul>
                         <li><Link to="/users/destinations">Profile</Link></li>
                         <button className="logout" onClick={logoutUser}>LogOut</button>
-
                         <li onClick={() => setMenu(!menu)}><AiOutlineClose /></li>
                     </ul>
                 }
@@ -43,7 +40,6 @@ const Navigation = () => {
         )
     }
     else {
-
         return (
             <div className="nav">
                 <Link className="home" to="/">Home</Link>
@@ -60,7 +56,6 @@ const Navigation = () => {
                     </ul>
                 }
             </div >
-
         )
     }
 }

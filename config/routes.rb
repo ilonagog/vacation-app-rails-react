@@ -1,17 +1,17 @@
 Rails.application.routes.draw do
 
-  resources :destinations, only: [:index, :show, :create] 
+  resources :destinations, only: [:index, :show, :create] do
+    resources :reviews, only: [:create]
+  end
   #   resources :reviews, only: [:index, :show,:create]
   # end
-
-  
   # resources :reviews, only: [:index, :show, :create, :update, :destroy]
 
-get "/reviews", to: "reviews#index"
-delete "/reviews/:id", to: "reviews#destroy"
-post "/destinations/:destination_id/reviews", to: "reviews#create"
-patch "/reviews/:id", to: "reviews#update"
-
+  resources :reviews
+# get "/reviews", to: "reviews#index"
+# delete "/reviews/:id", to: "reviews#destroy"
+# post "/destinations/:destination_id/reviews", to: "reviews#create"
+# patch "/reviews/:id", to: "reviews#update"
 
   # resources :users
   post '/signup', to: 'users#create' #create new user

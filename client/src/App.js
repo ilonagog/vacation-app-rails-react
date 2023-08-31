@@ -16,39 +16,23 @@ import Footer from './components/Footer';
 
 function App() {
   const [destinations, setDestinations] = useState([])
-  const [errors, setErrors] = useState(false)
-
   useEffect(() => {
     fetch('/destinations')
-      .then((resp) => {
-        if (resp.ok) {
-          resp.json().then(setDestinations)
-        } else {
-          resp.json().then(data => setErrors(data.error))
-        }
-      })
+      .then(resp => resp.json())
+      .then(data =>
+        setDestinations(data))
   }, [])
   console.log(destinations)
 
   const addDestination = (newDestination) => setDestinations([...destinations, newDestination])
-  const errorList = () => {
-
-    if (errors) {
-
-      return <h1>{errors}</h1>
-    }
-  }
-
 
   return (
-
     < div className="App" >
-      <p>{errorList()}</p>
       <Navigation />
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/destinations" element={<Destinations destinations={destinations} setDestinations={setDestinations} addDestination={addDestination} />} />
-        <Route path="/destination/:id/reviews" element={<NewReview destinations={destinations} setDestinations={setDestinations} />} />
+        <Route path="/destinations/:id/reviews" element={<NewReview destinations={destinations} setDestinations={setDestinations} />} />
         <Route path='/destinations/new' element={<AddDestinationForm destinations={destinations} setDestinations={setDestinations} addDestination={addDestination} />} />
         <Route path="/reviews" element={<Reviews />} />
         <Route path="/users/destinations" element={<UserProfile destinations={destinations} addDestination={addDestination} />} />

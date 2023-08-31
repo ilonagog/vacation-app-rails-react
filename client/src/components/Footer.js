@@ -1,21 +1,3 @@
-// import React from "react";
-//import SimpleReactFooter from 'simple-react-footer';
-
-// const Footer = () => {
-//     const year = new Date().getFullYear();
-
-
-
-//<footer>{`Copyright © Upbeat Code ${year}`}</footer>
-//     return
-//     (
-//         <div>
-//          
-//         </div>
-//     )
-// }
-
-// export default Footer;
 import React from 'react'
 
 const Footer = () => {

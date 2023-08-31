@@ -4,37 +4,39 @@ import mobiscroll from '@mobiscroll/react-lite';
 import "@mobiscroll/react-lite/dist/css/mobiscroll.min.css";
 import { useNavigate } from 'react-router-dom';
 
-
-
 function Login() {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+    const [formData, setFormData] = useState({
+        username: "",
+        password: ""
+    })
     const [errors, setErrors] = useState([]);
     const { login } = useContext(UserContext)
     const navigate = useNavigate()
 
     function handleSubmit(e) {
         e.preventDefault()
+        if (formData.username.length < 1 || formData.password.length < 1) return setErrors(["username or password can not be blank"])
         fetch("/login", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                username: username,
-                password: password
-            })
+            body: JSON.stringify(formData)
         })
             .then((r) => {
                 if (r.ok) {
                     r.json().then((userInfo) => login(userInfo))
                     navigate("/")
                 } else {
-                    const errorList = errors.map((error) => (error = { error }
-                    ))
-                    setErrors(errorList)
+                    setErrors(errors)
                 }
             })
+    }
+    const handleChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        })
     }
 
     return (
@@ -47,8 +49,9 @@ function Login() {
                                 inputStyle="box"
                                 labelStyle="floating"
                                 placeholder="Enter your username"
-                                value={username}
-                                onChange={(e) => setUsername(e.target.value)}
+                                value={formData.username}
+                                name="username"
+                                onChange={handleChange}
                             >
                                 Username
                             </mobiscroll.Input>
@@ -60,8 +63,9 @@ function Login() {
                                 type="password"
                                 passwordToggle="true"
                                 placeholder="Enter your password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
+                                name="password"
+                                value={formData.password}
+                                onChange={handleChange}
                             >
                                 Password
                             </mobiscroll.Input>
@@ -70,9 +74,7 @@ function Login() {
                     </div>
                 </mobiscroll.Form>
             </div>
-            <ul>
-                <li>{errors}</li>
-            </ul>
+            {errors.length > 0 && (errors.map(error => <p key={error} style={{ color: 'red' }}>{error}</p>))}
         </>
     );
 }

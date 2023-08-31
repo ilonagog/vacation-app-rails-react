@@ -6,9 +6,8 @@ import Destination from './Destination'
 
 const Destinations = ({ destinations, setDestinations, addDestination }) => {
     const [viewForm, setViewForm] = useState(false)
-
     const destinationsList = destinations.map((destination) => {
-        return (<Destination key={destination.id} destination={destination} />)
+        return (<Destination key={destination.id} destination={destination} setDestinations={setDestinations} destinations={destinations} />)
     })
 
     const handleClick = (e) => {
@@ -17,7 +16,7 @@ const Destinations = ({ destinations, setDestinations, addDestination }) => {
     }
     return (
         <div>
-            <Link to="/destinations/new"> <Button onClick={handleClick}>Add New Property</Button></Link>
+            <Link to="/destinations/new"> <Button onClick={() => handleClick}>Add New Property</Button></Link>
             {viewForm ?
                 <AddDestinationForm setViewForm={setViewForm} addDestination={addDestination} destinations={destinations} setDestinations={setDestinations} />
                 :
