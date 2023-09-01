@@ -29,8 +29,8 @@ const Destination = ({ destination, setDestinations, destinations }) => {
         setUser((prevUser) => ({ ...prevUser, reviews: newUserReviewList }))
         const userReviewList = updatedDestination.reviews.find((review) => review.user_id === user.id)
         if (!userReviewList) {
-            const newUserDestinations = user.destinations.filter((destination) => destination.id !== deletedReview.destination_id)
-            setUser({ ...user, destinations: newUserDestinations });
+            const newUserDestinations = user.uniq_dest.filter((destination) => destination.id !== deletedReview.destination_id)
+            setUser({ ...user, uniq_dest: newUserDestinations });
             navigate(`/destinations`)
         }
     }
@@ -61,12 +61,12 @@ const Destination = ({ destination, setDestinations, destinations }) => {
                     <p>{review.username}</p>
                     <p className='reviewList'>Review:  {review.review}</p>
                     <p className='ratings'>Rating:  {review.rating}/5</p>
-                    {/* {(loggedIn === user.id) ? ( */}
-                    <div> <EditReview onEditReview={onEditReview} id={review.id} review={review} />
-                        <Button onClick={() => handleDeleteReview(review)} >Delete Review</Button>
-                    </div>
-                    {/* )
-                        : null} */}
+                    {(user.id === review.user_id) ? (
+                        <div> <EditReview onEditReview={onEditReview} id={review.id} review={review} />
+                            <Button onClick={() => handleDeleteReview(review)} >Delete Review</Button>
+                        </div>
+                    )
+                        : null}
                 </div>
             )
         } else {

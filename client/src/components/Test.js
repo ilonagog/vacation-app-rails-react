@@ -55,8 +55,7 @@ const NewReview = ({ destinations, setDestinations }) => {
                 if (resp.ok) {
                     resp.json().then((newReview) => {
                         console.log(newReview)
-                        if (newReview.destination_id !== newReview.uniq_dest_id) {
-                            console.log(newReview.destination_id)
+                        if (newReview.destination.id === newReview.uniq_dest_id) {
 
                             // in a newReview we have destination_id, same as in uniq_destination.id
                             //1- id
@@ -64,18 +63,18 @@ const NewReview = ({ destinations, setDestinations }) => {
                             // create conditional similar as i have in delete , i have to do use .find to see wherether id was there or not , either come back as true or false, 
                             // look in the uniq_destination for the destination that has destination.id that the newReview has, if find nothing needs to be done because destination should be there already, if did not find i need to add a destination
                             setUser({
-                                ...user, reviews: [...user.reviews, newReview],
-                                destinations: [...user.uniq_dest, destination]
+                                ...user, reviews: [newReview, ...user.reviews],
+                                destinations: [destination, ...user.uniq_dest]
                             })
                             // ?user.destinations.filter((destination)=>destination.id !== destination)
-                            const updatedDestinations = destinations.map((uniq_dest) => {
-                                if (uniq_dest.id !== id) {
+                            const updatedDestinations = destinations.map((d) => {
+                                if (d.id !== id) {
                                     return ({
-                                        ...uniq_dest,
-                                        reviews: [...uniq_dest.reviews, newReview]
+                                        ...d,
+                                        reviews: [newReview, ...d.reviews]
                                     })
                                 } else {
-                                    return uniq_dest
+                                    return d
                                 }
 
                             })
@@ -130,4 +129,3 @@ const NewReview = ({ destinations, setDestinations }) => {
 }
 
 export default NewReview
-

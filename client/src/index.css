@@ -419,3 +419,11 @@ a.underline {
 .addreview {
   display: flex;
 }
+
+.list {
+  display: flex;
+  flex-direction: row;
+  padding-top: 20px;
+  margin: 20px;
+  list-style: decimal;
+}
