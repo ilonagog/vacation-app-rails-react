@@ -1,5 +1,5 @@
 import React from 'react'
-const Contact = () => {
+const About = () => {
     return (
         <div className='home'>
             <div className='about'>
@@ -14,5 +14,5 @@ const Contact = () => {
     )
 }
 
-export default Contact
+export default About
 

@@ -25,7 +25,7 @@ const Navigation = () => {
             <div className="nav">
                 <Link className="home" to="/">Home</Link>
                 <Link className="destinations" to="/destinations">Destinations</Link>
-                <Link className='aboutUs' to="/contact">About Us</Link>
+                <Link className='aboutUs' to="/about">About Us</Link>
                 {!menu ?
                     <div onClick={() => setMenu(!menu)} className="menu">
                         <RxDropdownMenu size={30} />
@@ -44,7 +44,7 @@ const Navigation = () => {
             <div className="nav">
                 <Link className="home" to="/">Home</Link>
                 <Link className="destinations" to="/destinations">Destinations</Link>
-                <Link className='aboutUs' to="/contact">About Us</Link>
+                <Link className='aboutUs' to="/about">About Us</Link>
                 {!menu ?
                     <div onClick={() => setMenu(!menu)} className="menu">
                         <RxDropdownMenu size={30} />

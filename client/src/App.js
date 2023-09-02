@@ -8,7 +8,7 @@ import Home from './components/Home';
 import Navigation from './components/Navigation';
 import Login from './Login';
 import Signup from './Signup';
-import Contact from './components/Contact';
+import About from './components/About';
 import Reviews from './components/Reviews';
 import UserProfile from './components/UserProfile';
 import NewReview from './components/NewReview';
@@ -38,7 +38,7 @@ function App() {
         <Route path="/users/destinations" element={<UserProfile destinations={destinations} addDestination={addDestination} />} />
         <Route path='/signup' element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route path="/about" element={<About />} />
       </Routes>
       <Footer />
     </div>
