@@ -7,6 +7,7 @@ import { Button } from '@mobiscroll/react-lite';
 import { useNavigate } from 'react-router-dom';
 
 
+
 const NewReview = ({ destinations, setDestinations }) => {
     const { user, setUser } = useContext(UserContext)
     let { id } = useParams()
@@ -32,15 +33,15 @@ const NewReview = ({ destinations, setDestinations }) => {
     function handleSubmit(e) {
         e.preventDefault()
         const newReview = { ...input }
-        const emptyInputData = () => {
-            for (const key of Object.keys(input)) {
-                if (input[key].length < 1) {
-                    return false
-                }
-            }
-            return true
-        }
-        if (!emptyInputData()) return setErrors(["Please fill blank"])
+        // const emptyInputData = () => {
+        //     for (const key of Object.keys(input)) {
+        //         if (input[key].length < 1) {
+        //             return false
+        //         }
+        //     }
+        //     return true
+        // }
+        // if (!emptyInputData()) return setErrors(["Please fill blank"])
 
         fetch(`/destinations/${id}/reviews`, {
             method: "POST",
@@ -75,10 +76,15 @@ const NewReview = ({ destinations, setDestinations }) => {
                         navigate("/destinations")
                     })
                 } else {
-                    setErrors()
+                    resp.json().then((err) => {
+                        if (err.errors) {
+                            setErrors(Object.values(err.errors));
+                        } else {
+                            setErrors([err.error]);
+                        }
+                    });
                 }
             })
-        // })
     }
 
     return (
@@ -114,8 +120,12 @@ const NewReview = ({ destinations, setDestinations }) => {
 
                 </div>
             </mobiscroll.Form>
-            {errors.length > 0 && (errors.map(error => <p key={error} style={{ color: 'red' }}>{error}</p>))}
-
+            {errors.map((err) => (
+                /* Display any errors returned by the server */
+                <li style={{ color: "black" }} key={err}>
+                    {err}
+                </li>
+            ))}
         </div>
     )
 }

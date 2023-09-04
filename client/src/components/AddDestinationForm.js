@@ -25,15 +25,15 @@ const AddDestinationForm = ({ addDestination }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const emptyInputData = () => {
-      for (const key of Object.keys(input)) {
-        if (input[key].length < 1) {
-          return false
-        }
-      }
-      return true
-    }
-    if (!emptyInputData()) return setErrors(["Please fill blank"])
+    // const emptyInputData = () => {
+    //   for (const key of Object.keys(input)) {
+    //     if (input[key].length < 1) {
+    //       return false
+    //     }
+    //   }
+    //   return true
+    // }
+    // if (!emptyInputData()) return setErrors(["Please fill blank"])
     fetch('/destinations', {
       method: "POST",
       headers: { "Content-type": "application/json" },
@@ -47,7 +47,8 @@ const AddDestinationForm = ({ addDestination }) => {
             navigate("/destinations")
           })
         } else {
-          setErrors(errors)
+          res.json().then((err) => setErrors(err.errors))
+
         }
       })
   }
@@ -123,8 +124,8 @@ const AddDestinationForm = ({ addDestination }) => {
             <mobiscroll.Button type="submit">Submit</mobiscroll.Button>
           </div>
         </mobiscroll.Form>
+        {errors}
       </div>
-      {errors.length > 0 && (errors.map(error => <p key={error} style={{ color: 'red' }}>{error}</p>))}
     </>
   )
 }
