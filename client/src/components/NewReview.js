@@ -14,7 +14,7 @@ const NewReview = ({ destinations, setDestinations }) => {
     id = parseInt(id)
     const navigate = useNavigate()
     const [errors, setErrors] = useState([])
-    let destination = destinations.filter((uniq_dest) => {
+    let destination = destinations.find((uniq_dest) => {
         return uniq_dest.id === id
     })
 
@@ -55,25 +55,27 @@ const NewReview = ({ destinations, setDestinations }) => {
                 if (resp.ok) {
                     resp.json().then((newReview) => {
                         console.log(newReview)
-                        const destinationFilter = user.uniq_dest.find((destination) => destination.id === newReview.uniq_dest_id)
+                        const destinationFilter = user.uniq_dest.find((destination) => destination.id === newReview.destination_id)
+                        console.log(destinationFilter)
                         if (!destinationFilter) {
                             setUser({
                                 ...user,
-                                reviews: [...user.reviews, newReview],
-                                un: [...user.uniq_dest, destination]
+                                // reviews: [...user.reviews, newReview],
+                                uniq_dest: [...user.uniq_dest, destination]
                             })
-                            const updatedDestinations = destinations.map((d) => {
-                                if (d.id === id) {
-                                    return ({
-                                        ...d,
-                                        reviews: [...d.reviews, newReview]
-                                    })
-                                } else {
-                                    return d
-                                }
-                            })
-                            setDestinations(updatedDestinations)
                         }
+                        const updatedDestinations = destinations.map((d) => {
+                            if (d.id === id) {
+                                return ({
+                                    ...d,
+                                    reviews: [...d.reviews, newReview]
+                                })
+                            } else {
+                                return d
+                            }
+                        })
+                        setDestinations(updatedDestinations)
+
                         navigate("/destinations")
                     })
                 } else {

@@ -1,5 +1,5 @@
 class ReviewSerializer < ActiveModel::Serializer
-  attributes :id,:review, :rating ,  :destination_id, :user_id, :username
+  attributes :id,:review, :rating ,  :destination_id, :user_id, :username, :destination_name
     belongs_to :user
     belongs_to :destination
   
@@ -7,9 +7,9 @@ class ReviewSerializer < ActiveModel::Serializer
      object.user.username
     end
 
-    # def destination
-    #   {name: object.destination.name}
-    # end
+    def destination_name
+       object.destination.name
+    end
 # return destination name associated  with that review
 
 end

@@ -22,7 +22,7 @@ function App() {
       .then(data =>
         setDestinations(data))
   }, [])
-  // console.log(destinations)
+  console.log(destinations)
 
   const addDestination = (newDestination) => setDestinations([...destinations, newDestination])
 

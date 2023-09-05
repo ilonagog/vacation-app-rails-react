@@ -4,7 +4,7 @@ import { UserContext } from '../context/user'
 import { useNavigate } from 'react-router-dom'
 import { RxDropdownMenu } from 'react-icons/rx'
 import { AiOutlineClose } from "react-icons/ai"
-import { BiSolidUserAccount } from 'react-icons/bi'
+// import { BiSolidUserAccount } from 'react-icons/bi'
 
 const Navigation = () => {
     const [menu, setMenu] = useState(false)
@@ -51,7 +51,7 @@ const Navigation = () => {
                     </div> :
                     <ul>
                         <li><Link to='/signup'>Sign Up</Link></li>
-                        <li><Link to='/login'>{BiSolidUserAccount} User login</Link></li>
+                        <li><Link to='/login'>User login</Link></li>
                         <li onClick={() => setMenu(!menu)}><AiOutlineClose /></li>
                     </ul>
                 }
