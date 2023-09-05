@@ -3,9 +3,6 @@ Rails.application.routes.draw do
   resources :destinations, only: [:index, :show, :create] do
     resources :reviews, only: [:create]
   end
-  #   resources :reviews, only: [:index, :show,:create]
-  # end
-  # resources :reviews, only: [:index, :show, :create, :update, :destroy]
 
   resources :reviews
 # get "/reviews", to: "reviews#index"
@@ -19,9 +16,14 @@ Rails.application.routes.draw do
   post "/login", to: "sessions#create" # login and authenticate
   delete "/logout", to: "sessions#destroy" #logout user 
 
-  # resources :users, only: [:show] do
-  #   resources :reviews, only: [:index]
-  # end
+
+#custom route 
+
+# Create a custom route that takes an argument of a number, n. 
+# Use this number to find all the users who have more than n reviews. 
+# Then get all the destinations associated with all those users and render this back as json. 
+# Make sure to add error handling, for instance when you don't find any users who meet that criterion.
+
 
 
 

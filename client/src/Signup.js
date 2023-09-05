@@ -14,17 +14,8 @@ const Signup = () => {
     const navigate = useNavigate()
 
     const handleSubmit = (e) => {
-        const emptyFormData = () => {
-            for (const key of Object.keys(formData)) {
-                if (formData[key].length < 1) {
-                    return false
-                }
-            }
-            return true
-        }
         e.preventDefault()
         console.log("hi")
-        if (!emptyFormData()) return setErrors(["Please fill blank"])
         fetch("/signup", {
             method: "POST",
             headers: {
@@ -39,7 +30,8 @@ const Signup = () => {
                     signup(user)
                     navigate('/destinations')
                 } else {
-                    setErrors(errors)
+                    const errorList = user.errors.map(e => <li>{e}</li>)
+                    setErrors(errorList)
                 }
             })
     }
@@ -84,7 +76,9 @@ const Signup = () => {
                     <mobiscroll.Button type="submit">Sign In</mobiscroll.Button>
                 </div>
             </mobiscroll.Form>
-            {errors.length > 0 && (errors.map(error => <p key={error} style={{ color: 'red' }}>{error}</p>))}
+            <ul>
+                {errors}
+            </ul>
         </>
     );
 }

@@ -15,7 +15,6 @@ function Login() {
 
     function handleSubmit(e) {
         e.preventDefault()
-        if (formData.username.length < 1 || formData.password.length < 1) return setErrors(["username or password can not be blank"])
         fetch("/login", {
             method: "POST",
             headers: {
@@ -28,7 +27,13 @@ function Login() {
                     r.json().then((userInfo) => login(userInfo))
                     navigate("/")
                 } else {
-                    setErrors(errors)
+                    r.json().then((err) => {
+                        if (err.errors) {
+                            setErrors(Object.values(err.errors));
+                        } else {
+                            setErrors([err.error]);
+                        }
+                    });
                 }
             })
     }
@@ -74,7 +79,11 @@ function Login() {
                     </div>
                 </mobiscroll.Form>
             </div>
-            {errors.length > 0 && (errors.map(error => <p key={error} style={{ color: 'red' }}>{error}</p>))}
+            {errors.map((err) => (
+                <li style={{ color: "black" }} key={err}>
+                    {err}
+                </li>
+            ))}
         </>
     );
 }

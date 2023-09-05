@@ -25,8 +25,6 @@ const Destination = ({ destination, setDestinations, destinations }) => {
         const updatedDestination = { ...onDestination, reviews: newDestinationReviews }
         const updatedDestinations = destinations.map((destination) => destination.id === updatedDestination.id ? updatedDestination : destination)
         setDestinations(updatedDestinations)
-        // const newUserReviewList = user.reviews.filter((review) => review.id !== deletedReview.id)
-        // setUser((prevUser) => ({ ...prevUser, reviews: newUserReviewList }))
         const userReviewList = updatedDestination.reviews.find((review) => review.user_id === user.id)
         if (!userReviewList) {
             const newUserDestinations = user.uniq_dest.filter((destination) => destination.id !== deletedReview.destination_id)
@@ -41,8 +39,6 @@ const Destination = ({ destination, setDestinations, destinations }) => {
         const updatedDestination = { ...onDestination, reviews: updatedDestinationReviews };
         const updatedDestinations = destinations.map((destination) => destination.id === updatedDestination.id ? updatedDestination : destination);
         setDestinations(updatedDestinations);
-        // const updatedUserReviews = user.reviews.map((review) => review.id === editedReview.id ? editedReview : review);
-        // setUser({ ...user, reviews: updatedUserReviews })
     }
 
     const reviewList = reviews.map((review) => {
@@ -98,8 +94,6 @@ const Destination = ({ destination, setDestinations, destinations }) => {
                                         <Card.Footer>$ {price}</Card.Footer>
                                         <hr />
                                         {reviewList}
-                                        {/* < EditReview onClick={handleEdit} id={review.id} review={review} />
-                                        < Button onClick={handleDelete} id={review.id}>Delete Review</Button> */}
                                         {viewForm ?
                                             <NewReview destination={destination} />
                                             : <Link to={`/destinations/${id}/reviews`}><Button onClick={handleClick}>Add your review</Button></Link>}

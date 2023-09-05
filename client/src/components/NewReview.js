@@ -33,16 +33,6 @@ const NewReview = ({ destinations, setDestinations }) => {
     function handleSubmit(e) {
         e.preventDefault()
         const newReview = { ...input }
-        // const emptyInputData = () => {
-        //     for (const key of Object.keys(input)) {
-        //         if (input[key].length < 1) {
-        //             return false
-        //         }
-        //     }
-        //     return true
-        // }
-        // if (!emptyInputData()) return setErrors(["Please fill blank"])
-
         fetch(`/destinations/${id}/reviews`, {
             method: "POST",
             headers: {
@@ -60,7 +50,6 @@ const NewReview = ({ destinations, setDestinations }) => {
                         if (!destinationFilter) {
                             setUser({
                                 ...user,
-                                // reviews: [...user.reviews, newReview],
                                 uniq_dest: [...user.uniq_dest, destination]
                             })
                         }
@@ -125,7 +114,7 @@ const NewReview = ({ destinations, setDestinations }) => {
             </mobiscroll.Form>
             {errors.map((err) => (
                 /* Display any errors returned by the server */
-                <li style={{ color: "black" }} key={err}>
+                <li style={{ color: "red" }} key={err}>
                     {err}
                 </li>
             ))}
