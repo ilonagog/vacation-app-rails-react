@@ -45,7 +45,6 @@ const AddDestinationForm = ({ addDestination }) => {
               setErrors([err.error]);
             }
           });
-
         }
       })
   }
@@ -121,12 +120,14 @@ const AddDestinationForm = ({ addDestination }) => {
             <mobiscroll.Button type="submit">Submit</mobiscroll.Button>
           </div>
         </mobiscroll.Form>
-        {errors.map((err) => (
-          /* Display any errors returned by the server */
-          <li style={{ color: "black" }} key={err}>
-            {err}
-          </li>
-        ))}
+        <div className='errors'>
+          {errors.map((err, i) => (
+            /* Display any errors returned by the server */
+            <ul style={{ color: "black" }} key={i}>
+              {err}
+            </ul>
+          ))}
+        </div>
       </div>
     </>
   )

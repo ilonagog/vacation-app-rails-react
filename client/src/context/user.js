@@ -40,7 +40,7 @@ function UserProvider({ children }) {
         setUser(user)
         setLoggedIn(true)
         fetchReviews()
-        navigate("/destinations")
+        navigate("/")
     }
 
     const logout = () => {

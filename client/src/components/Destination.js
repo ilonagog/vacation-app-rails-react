@@ -88,10 +88,11 @@ const Destination = ({ destination, setDestinations, destinations }) => {
                                     <Card.Img variant="top" src={image} />
                                     <Card.Body>
                                         <Card.Title><Link to={`/destination/${id}`}> <h3>{name}</h3></Link></Card.Title>
-                                        <Card.Text>{description}
-                                        </Card.Text>
-                                        <Card.Footer> <span className="bi bi-geo-alt-fill"></span> {location}</Card.Footer>
+                                        {description}
+
+                                        <Card.Footer className='location'> <span className="bi bi-geo-alt-fill"></span> {location}</Card.Footer>
                                         <Card.Footer>$ {price}</Card.Footer>
+
                                         <hr />
                                         {reviewList}
                                         {viewForm ?
@@ -117,13 +118,13 @@ const Destination = ({ destination, setDestinations, destinations }) => {
                                     <Card.Img variant="top" src={image} />
                                     <Card.Body>
                                         <Card.Title><Link to={`/destination/${id}`}> <h3>{name}</h3></Link></Card.Title>
-                                        <Card.Text>
-                                            {description}
-                                        </Card.Text>
-                                        <Card.Footer> <span className="bi bi-geo-alt-fill"></span> {location}  </Card.Footer>
-                                        <Card.Footer>$ {price}</Card.Footer>
+
+                                        {description}
+
+                                        <Card.Footer className='location'> <span className="bi bi-geo-alt-fill"></span> {location}  </Card.Footer>
+                                        $ {price}
                                         <hr />
-                                        <Card.Text>{reviewList}</Card.Text>
+                                        {reviewList}
                                         <Link className="underline" to="/login">Login and leave your review</Link>
                                     </Card.Body>
                                 </Card>

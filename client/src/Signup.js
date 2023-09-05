@@ -28,9 +28,9 @@ const Signup = () => {
                 if (!user.errors) {
                     console.log(user)
                     signup(user)
-                    navigate('/destinations')
+                    navigate('/')
                 } else {
-                    const errorList = user.errors.map(e => <li>{e}</li>)
+                    const errorList = user.errors.map((e, i) => <li key={i}>{e}</li>)
                     setErrors(errorList)
                 }
             })
@@ -63,8 +63,8 @@ const Signup = () => {
                         <mobiscroll.Input
                             inputStyle="box"
                             labelStyle="floating"
-                            type="password"
-                            passwordToggle="true"
+                            type="boolean"
+                            passwordToggle="boolean"
                             placeholder="Set a password"
                             name="password"
                             value={formData.password}

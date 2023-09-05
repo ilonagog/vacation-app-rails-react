@@ -108,9 +108,9 @@ p {
   background: none;
   color: rgb(13, 26, 29);
 
-  font-family: myFirstFont;
+  font-family: 'Times New Roman', Times, serif;
   font-variant: petite-caps;
-  font-weight: bolder;
+  /* font-weight: bolder; */
 
 }
 
@@ -154,6 +154,9 @@ p {
 
 .des-block .card-body {
   padding: 0;
+  font-family: 'Times New Roman', Times, serif;
+  font-variant: petite-caps;
+
 }
 
 .des-block img {
@@ -194,6 +197,9 @@ p {
 }
 
 .mbsc-mobiscroll.mbsc-btn {
+  font-family: 'Times New Roman', Times, serif;
+  font-variant: petite-caps;
+
   display: inherit;
   margin-left: 140px;
   width: fit-content;
@@ -426,4 +432,13 @@ a.underline {
   padding-top: 20px;
   margin: 20px;
   list-style: decimal;
+}
+
+.errors {
+  display: flex;
+  list-style: none;
+}
+
+.location {
+  text-decoration: underline;
 }

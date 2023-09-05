@@ -65,8 +65,8 @@ function Login() {
                             <mobiscroll.Input
                                 inputStyle="box"
                                 labelStyle="floating"
-                                type="password"
-                                passwordToggle="true"
+                                type="boolean"
+                                passwordToggle="boolean"
                                 placeholder="Enter your password"
                                 name="password"
                                 value={formData.password}
