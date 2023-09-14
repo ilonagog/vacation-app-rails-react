@@ -44,13 +44,11 @@ ul {
 }
 
 .nav {
-
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   padding-top: 5px;
   font-variant: petite-caps;
-
 }
 
 .formView {
@@ -114,8 +112,22 @@ p {
 
 }
 
+ul {
+  display: inline-grid;
+  margin-inline: 20px;
+  padding: inherit;
+
+}
+
+.des-block .row {
+  display: flex;
+  margin-bottom: 50px;
+}
+
 .des-block {
+
   background: #f2f2f2;
+  display: contents;
 }
 
 .des-block.content-block .holder:hover {
@@ -126,9 +138,6 @@ p {
   transform: none;
 }
 
-.des-block .row {
-  margin-bottom: 50px;
-}
 
 .des-block .row:last-child {
   margin-bottom: 0;
@@ -152,6 +161,10 @@ p {
 
 }
 
+.card {
+  display: flex;
+}
+
 .des-block .card-body {
   padding: 0;
   font-family: 'Times New Roman', Times, serif;
@@ -167,7 +180,7 @@ p {
 
 .des-block .card-title {
   margin: 0 0 10px;
-  color: #f64b4b;
+  color: #225783;
   font-size: 22px;
 }
 
@@ -393,7 +406,9 @@ a.wave:before {
   animation: animate 0.5s linear infinite;
 }
 
-
+a:hover {
+  color: #00aeff;
+}
 
 
 @keyframes animate {
@@ -415,7 +430,7 @@ a.underline {
 }
 
 .ratings {
-  display: block;
+  display: flex;
 }
 
 .country {

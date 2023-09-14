@@ -12,7 +12,7 @@ const Destinations = ({ destinations, setDestinations, addDestination }) => {
 
     const handleClick = (e) => {
         setViewForm(true)
-        console.log("clicked")
+
     }
     return (
         <div>

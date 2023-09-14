@@ -26,7 +26,6 @@ const Signup = () => {
             .then(resp => resp.json())
             .then(user => {
                 if (!user.errors) {
-                    console.log(user)
                     signup(user)
                     navigate('/')
                 } else {
@@ -63,8 +62,8 @@ const Signup = () => {
                         <mobiscroll.Input
                             inputStyle="box"
                             labelStyle="floating"
-                            type="boolean"
-                            passwordToggle="boolean"
+                            type="password"
+                            passwordToggle={formData.password === true}
                             placeholder="Set a password"
                             name="password"
                             value={formData.password}

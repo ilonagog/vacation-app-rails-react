@@ -54,9 +54,9 @@ const Destination = ({ destination, setDestinations, destinations }) => {
             }
             return (
                 <div key={review.id}>
-                    <p>{review.username}</p>
-                    <p className='reviewList'>Review:  {review.review}</p>
-                    <p className='ratings'>Rating:  {review.rating}/5</p>
+                    <p>{review.username} :</p>
+                    <p className='reviewList'>Review:   {review.review}</p>
+                    <p className='ratings'>Rating:   {review.rating}/5</p>
                     {(user.id === review.user_id) ? (
                         <div> <EditReview onEditReview={onEditReview} id={review.id} review={review} />
                             <Button onClick={() => handleDeleteReview(review)} >Delete Review</Button>
@@ -68,9 +68,9 @@ const Destination = ({ destination, setDestinations, destinations }) => {
         } else {
             return (
                 <div key={review.id}>
-                    <p>{review.username}</p>
-                    <p className='reviewList'>Review:  {review.review}</p>
-                    <p className='ratings'>Rating:  {review.rating}/5</p>
+                    <p>{review.username} :</p>
+                    <p className='reviewList'>Review:   {review.review}</p>
+                    <p className='ratings'>Rating:   {review.rating}/5</p>
                 </div>)
 
         }
@@ -79,32 +79,35 @@ const Destination = ({ destination, setDestinations, destinations }) => {
 
     if (loggedIn) {
         return (
-            <section id="des" className='block des-block'>
-                <Container fluid>
-                    <Row>
-                        <Col sm={4} md={12}>
-                            <div className='holder'>
-                                <Card>
-                                    <Card.Img variant="top" src={image} />
-                                    <Card.Body>
-                                        <Card.Title><Link to={`/destination/${id}`}> <h3>{name}</h3></Link></Card.Title>
-                                        {description}
+            <div className='card'>
 
-                                        <Card.Footer className='location'> <span className="bi bi-geo-alt-fill"></span> {location}</Card.Footer>
-                                        <Card.Footer>$ {price}</Card.Footer>
+                <section id="des" className='block des-block'>
+                    <Container fluid className="row row-cols-1 row-cols-sm-2 row-cols-md-4">
+                        <Row>
+                            <Col sm={4} md={12}>
+                                <div className='holder'>
+                                    <Card>
+                                        <Card.Img variant="top" src={image} />
+                                        <Card.Body>
+                                            <Card.Title><h3>{name}</h3></Card.Title>
+                                            {description}
 
-                                        <hr />
-                                        {reviewList}
-                                        {viewForm ?
-                                            <NewReview destination={destination} />
-                                            : <Link to={`/destinations/${id}/reviews`}><Button onClick={handleClick}>Add your review</Button></Link>}
-                                    </Card.Body>
-                                </Card>
-                            </div>
-                        </Col>
-                    </Row>
-                </Container>
-            </section>
+                                            <Card.Footer className='location'> <span className="bi bi-geo-alt-fill"></span> {location}</Card.Footer>
+                                            <Card.Footer>$ {price}</Card.Footer>
+                                            <hr />
+                                            <h3>Reviews:</h3>
+                                            {reviewList}
+                                            {viewForm ?
+                                                <NewReview destination={destination} />
+                                                : <Link to={`/destinations/${id}/reviews`}><Button onClick={handleClick}>Add your review</Button></Link>}
+                                        </Card.Body>
+                                    </Card>
+                                </div>
+                            </Col>
+                        </Row>
+                    </Container>
+                </section>
+            </div>
 
         )
     } else {
@@ -117,13 +120,12 @@ const Destination = ({ destination, setDestinations, destinations }) => {
                                 <Card>
                                     <Card.Img variant="top" src={image} />
                                     <Card.Body>
-                                        <Card.Title><Link to={`/destination/${id}`}> <h3>{name}</h3></Link></Card.Title>
-
+                                        <Card.Title> <h3>{name}</h3></Card.Title>
                                         {description}
-
                                         <Card.Footer className='location'> <span className="bi bi-geo-alt-fill"></span> {location}  </Card.Footer>
                                         $ {price}
                                         <hr />
+                                        <h3>Reviews:</h3>
                                         {reviewList}
                                         <Link className="underline" to="/login">Login and leave your review</Link>
                                     </Card.Body>

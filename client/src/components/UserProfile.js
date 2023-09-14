@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { UserContext } from '../context/user'
 import { Link } from 'react-router-dom';
+import { Button } from '@mobiscroll/react-lite';
 
 const UserProfile = () => {
     const { user } = useContext(UserContext)
@@ -13,7 +14,6 @@ const UserProfile = () => {
                 <li key={destination.id}>{destination.name}</li>
             </div>
         )
-
     })
 
     return (
@@ -21,7 +21,7 @@ const UserProfile = () => {
             <p>Hi!</p>
             <h3>{username} has reviewed :</h3>
             <ul>{destinationsList}</ul>
-            <Link to="/destinations">Rate destinations</Link>
+            <Link to="/destinations"><Button>Rate destinations</Button></Link>
         </div>
     )
 }

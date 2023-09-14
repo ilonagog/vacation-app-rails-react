@@ -21,7 +21,7 @@ const AddDestinationForm = ({ addDestination }) => {
       [e.target.name]: e.target.value
     })
   }
-  console.log(input)
+
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -33,7 +33,6 @@ const AddDestinationForm = ({ addDestination }) => {
       .then(res => {
         if (res.ok) {
           res.json().then((newDestination) => {
-            console.log(newDestination)
             addDestination(newDestination)
             navigate("/destinations")
           })
@@ -122,7 +121,6 @@ const AddDestinationForm = ({ addDestination }) => {
         </mobiscroll.Form>
         <div className='errors'>
           {errors.map((err, i) => (
-            /* Display any errors returned by the server */
             <ul style={{ color: "black" }} key={i}>
               {err}
             </ul>

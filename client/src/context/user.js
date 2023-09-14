@@ -15,8 +15,6 @@ function UserProvider({ children }) {
             .then(data => {
                 if (data.error) {
                     setLoggedIn(false)
-                    // setCurrentUser({})
-
                 } else {
                     setLoggedIn(true)
                     setUser(data)
@@ -24,13 +22,12 @@ function UserProvider({ children }) {
                 }
             })
     }, [])
-    console.log(user)
 
     const fetchReviews = () => {
         fetch("/reviews")
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                // console.log(data)
                 setReviews(data)
             })
     }
@@ -52,7 +49,6 @@ function UserProvider({ children }) {
         setUser(user)
         setLoggedIn(true)
     }
-    // console.log(user)
 
     return (
         <UserContext.Provider value={{ user, errors, setErrors, setUser, login, logout, signup, loggedIn, reviews }}>

@@ -13,8 +13,6 @@ const EditReview = ({ review, onEditReview }) => {
         rating: review.rating
     })
     const handleChange = (e) => {
-        console.log(e.target.value)
-
         setInput({
             ...input,
             [e.target.name]: e.target.value
@@ -23,16 +21,6 @@ const EditReview = ({ review, onEditReview }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        const emptyInputData = () => {
-            for (const key of Object.keys(input)) {
-                if (input[key].length < 1) {
-                    return false
-                }
-            }
-            return true
-        }
-        console.log("clicked")
-        if (!emptyInputData()) return setErrors(["Please fill blank"])
 
         fetch(`/reviews/${review.id}`, {
             method: "PATCH",
@@ -41,10 +29,18 @@ const EditReview = ({ review, onEditReview }) => {
             },
             body: JSON.stringify(input),
         })
-            .then(r => r.json())
-            .then((data) =>
-                onEditReview(data))
-        setViewForm()
+            .then(resp => {
+                if (resp.ok) {
+                    resp.json().then((data) =>
+
+                        onEditReview(data))
+                    setViewForm(false)
+                } else {
+                    resp.json().then((err) => setErrors(err.errors))
+                }
+            })
+
+
     }
     const handleEditView = () => {
         setViewForm(true)
@@ -83,12 +79,15 @@ const EditReview = ({ review, onEditReview }) => {
                             <mobiscroll.Button type="submit">Edit review</mobiscroll.Button>
                         </div>
                     </mobiscroll.Form>
+                    {errors.map((err) => (
+                        <li style={{ color: "black" }} key={err}>
+                            {err}
+                        </li>
+                    ))}
                 </div>
                 :
                 <Button onClick={handleEditView}>Edit Review</Button>
             }
-            {errors.length > 0 ? errors.map(error => <p key={error} style={{ color: 'red' }}>{error}</p>) : null}
-
         </div>
     )
 }

@@ -23,7 +23,6 @@ const NewReview = ({ destinations, setDestinations }) => {
         rating: ""
     })
     const handleChange = (e) => {
-        console.log(e.target.value)
         setInput({
             ...input,
             [e.target.name]: e.target.value
@@ -46,7 +45,6 @@ const NewReview = ({ destinations, setDestinations }) => {
                     resp.json().then((newReview) => {
                         console.log(newReview)
                         const destinationFilter = user.uniq_dest.find((destination) => destination.id === newReview.destination_id)
-                        console.log(destinationFilter)
                         if (!destinationFilter) {
                             setUser({
                                 ...user,
@@ -64,7 +62,6 @@ const NewReview = ({ destinations, setDestinations }) => {
                             }
                         })
                         setDestinations(updatedDestinations)
-
                         navigate("/destinations")
                     })
                 } else {
@@ -113,8 +110,7 @@ const NewReview = ({ destinations, setDestinations }) => {
                 </div>
             </mobiscroll.Form>
             {errors.map((err) => (
-                /* Display any errors returned by the server */
-                <li style={{ color: "red" }} key={err}>
+                <li style={{ color: "black" }} key={err}>
                     {err}
                 </li>
             ))}
