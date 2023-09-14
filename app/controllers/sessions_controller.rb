@@ -2,11 +2,9 @@ class SessionsController < ApplicationController
     skip_before_action :authorize, only: [:create, :destroy]
     # log in
     def create 
-    # byebug
         user = User.find_by(username: params[:username])
         if user&.authenticate(params[:password])
             #sign in 
-            # byebug
             session[:user_id] = user.id
             render json: user, status: :ok
         else
