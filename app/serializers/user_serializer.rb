@@ -6,5 +6,5 @@ class UserSerializer < ActiveModel::Serializer
   def uniq_dest
     object.destinations.uniq
   end
-  
+
 end
