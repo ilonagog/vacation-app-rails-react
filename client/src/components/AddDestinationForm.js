@@ -34,6 +34,13 @@ const AddDestinationForm = ({ addDestination }) => {
         if (res.ok) {
           res.json().then((newDestination) => {
             addDestination(newDestination)
+            setInput({
+              name: "",
+              location: "",
+              image: "",
+              description: "",
+              price: ""
+            })
             navigate("/destinations")
           })
         } else {

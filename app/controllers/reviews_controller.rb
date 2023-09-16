@@ -2,7 +2,7 @@ class ReviewsController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
-    skip_before_action :authorize, only: [:index, :show]
+    # skip_before_action :authorize, only: [:index, :show]
     def index
         reviews = Review.all
         render json: reviews
@@ -31,6 +31,16 @@ class ReviewsController < ApplicationController
         head :no_content
     end
 
+    def find_reviews
+        n = params[:n].to_i
+        reviews = Review.where("rating > ?", n)
+        # byebug
+        if reviews.any?
+            render json: reviews.map{|review| review.user}.uniq
+        else
+            render json: {error: "No review found"}
+        end
+    end
 
 
 

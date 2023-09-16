@@ -43,7 +43,6 @@ const NewReview = ({ destinations, setDestinations }) => {
             .then(resp => {
                 if (resp.ok) {
                     resp.json().then((newReview) => {
-                        console.log(newReview)
                         const destinationFilter = user.uniq_dest.find((destination) => destination.id === newReview.destination_id)
                         if (!destinationFilter) {
                             setUser({
@@ -62,6 +61,10 @@ const NewReview = ({ destinations, setDestinations }) => {
                             }
                         })
                         setDestinations(updatedDestinations)
+                        setInput({
+                            review: "",
+                            rating: ""
+                        })
                         navigate("/destinations")
                     })
                 } else {
