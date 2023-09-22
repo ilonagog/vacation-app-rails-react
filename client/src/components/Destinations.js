@@ -14,6 +14,7 @@ const Destinations = ({ destinations, setDestinations, addDestination }) => {
         setViewForm(true)
 
     }
+
     return (
         <div>
             <Link to="/destinations/new"> <Button onClick={() => handleClick}>Add New Property</Button></Link>

@@ -1,25 +1,25 @@
 class DestinationsController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
-    skip_before_action :authorize, only: [:index, :show, :create]
+    skip_before_action :authorize, only: [:index, :show, :create, :destination_reviews]
     wrap_parameters format: []
+
     def index
         render json: Destination.all, status: :ok
-    end
-
-
-    def show
-        destination = Destination.find(params[:id])
-        render json: destination
     end
 
     def create
         destination  = Destination.create!(destination_params)
         render json: destination, status: :created
     end
-
-
     
+    def show
+        destination = Destination.find(params[:id])
+        render json: destination
+    end
+
+
+ 
 
     private
 

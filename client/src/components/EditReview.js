@@ -39,8 +39,6 @@ const EditReview = ({ review, onEditReview }) => {
                     resp.json().then((err) => setErrors(err.errors))
                 }
             })
-
-
     }
     const handleEditView = () => {
         setViewForm(true)

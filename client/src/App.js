@@ -16,13 +16,14 @@ import Footer from './components/Footer';
 
 function App() {
   const [destinations, setDestinations] = useState([])
+
   useEffect(() => {
     fetch('/destinations')
       .then(resp => resp.json())
-      .then(data =>
-        setDestinations(data))
+      .then(data => {
+        setDestinations(data)
+      })
   }, [])
-  console.log(destinations)
 
   const addDestination = (newDestination) => setDestinations([...destinations, newDestination])
 

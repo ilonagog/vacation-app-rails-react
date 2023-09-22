@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     resources :reviews, only: [:create]
   end
 
-  resources :reviews
+  resources :reviews 
 # get "/reviews", to: "reviews#index"
 # delete "/reviews/:id", to: "reviews#destroy"
 # post "/destinations/:destination_id/reviews", to: "reviews#create"

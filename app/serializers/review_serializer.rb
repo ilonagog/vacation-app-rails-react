@@ -4,6 +4,7 @@ class ReviewSerializer < ActiveModel::Serializer
     belongs_to :destination
   
     def username
+      #  byebug
      object.user.username
     end
 

@@ -6,7 +6,6 @@ import { Button } from '@mobiscroll/react-lite';
 const UserProfile = () => {
     const { user } = useContext(UserContext)
     const { username } = user
-    console.log(user)
 
     const destinationsList = user.uniq_dest.map((destination, i) => {
         return (

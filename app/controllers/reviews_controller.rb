@@ -2,35 +2,35 @@ class ReviewsController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
-    # skip_before_action :authorize, only: [:index, :show]
+    skip_before_action :authorize, only: [:index, :show]
     def index
         reviews = Review.all
         render json: reviews
     end
 
-    def show 
-        review = Review.find(params[:id])
-        render json: review
-    end
-
+    
     def create
         user = find_user_by_session_id
         review = user.reviews.create!(review_params)
         render json: review, status: :created
     end
+    def show 
+        review = Review.find(params[:id])
+        render json: review
+    end
 
     def update
         user = find_user_by_session_id
-        review = Review.find(params[:id])
+        review = user.reviews.find(params[:id])
         review.update!(review_params)
         render json: review
     end
     def destroy
+        user = find_user_by_session_id
         review = Review.find(params[:id])
         review.destroy
         head :no_content
     end
-
 
     private
 
