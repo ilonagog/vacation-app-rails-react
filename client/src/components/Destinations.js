@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import AddDestinationForm from './AddDestinationForm'
 import Destination from './Destination'
-
+import ScrollToTop from "react-scroll-to-top";
 const Destinations = ({ destinations, setDestinations, addDestination }) => {
     const [viewForm, setViewForm] = useState(false)
     const destinationsList = destinations.map((destination) => {
@@ -23,6 +23,7 @@ const Destinations = ({ destinations, setDestinations, addDestination }) => {
                 :
                 <ul>{destinationsList}</ul>
             }
+            <ScrollToTop smooth />
         </div>
     )
 }
