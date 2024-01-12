@@ -13,7 +13,7 @@ const Footer = () => {
         </a>
         <a
           className="social-icon github"
-          href="https://www.youtube.com/watch?v=0AmITped1KY"
+          href="https://github.com/ilonagog/vacation-app-rails-react"
         >
           <i className="fab fa-github"></i>
         </a>

@@ -150,8 +150,9 @@ ul {
 
 .des-block .card {
   border: 0;
-  display: grid;
+  display: flex;
   justify-items: center;
+  max-width: 800px;
 }
 
 .card {
@@ -167,6 +168,7 @@ ul {
 .des-block img {
   margin: 0 0 15px;
   width: 450px;
+  height: fit-content;
 }
 
 .des-block .card-title {
