@@ -53,7 +53,7 @@ const Destination = ({ destination, setDestinations, destinations }) => {
                 })
             }
             return (
-                <div key={review.id}>
+                <div className='reviewCard' key={review.id}>
                     <p>{review.username} :</p>
                     <p className='reviewList'>Review:   {review.review}</p>
                     <p className='ratings'>Rating:   {review.rating}/5</p>
@@ -67,7 +67,7 @@ const Destination = ({ destination, setDestinations, destinations }) => {
             )
         } else {
             return (
-                <div key={review.id}>
+                <div className='reviewCard' key={review.id}>
                     <p>{review.username} :</p>
                     <p className='reviewList'>Review:   {review.review}</p>
                     <p className='ratings'>Rating:   {review.rating}/5</p>

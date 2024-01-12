@@ -5,17 +5,16 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: rgb(189 208 241);
 }
 
-
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -66,7 +65,6 @@ h1 {
   font-size: 24px;
   font-family: myFirstFont;
   font-variant: petite-caps;
-
 }
 
 .centered {
@@ -106,17 +104,15 @@ p {
   background: none;
   color: rgb(13, 26, 29);
 
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
   font-variant: petite-caps;
   /* font-weight: bolder; */
-
 }
 
 ul {
   display: inline-grid;
   margin-inline: 20px;
   padding: inherit;
-
 }
 
 .des-block .row {
@@ -125,7 +121,6 @@ ul {
 }
 
 .des-block {
-
   background: #f2f2f2;
   display: contents;
 }
@@ -137,7 +132,6 @@ ul {
 .des-block.content-block .holder:hover .image img {
   transform: none;
 }
-
 
 .des-block .row:last-child {
   margin-bottom: 0;
@@ -158,7 +152,6 @@ ul {
   border: 0;
   display: grid;
   justify-items: center;
-
 }
 
 .card {
@@ -167,15 +160,13 @@ ul {
 
 .des-block .card-body {
   padding: 0;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
   font-variant: petite-caps;
-
 }
 
 .des-block img {
   margin: 0 0 15px;
   width: 450px;
-
 }
 
 .des-block .card-title {
@@ -210,7 +201,7 @@ ul {
 }
 
 .mbsc-mobiscroll.mbsc-btn {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
   font-variant: petite-caps;
 
   display: inherit;
@@ -224,7 +215,6 @@ h3 {
 }
 
 .logout {
-
   border-color: #001a27;
 }
 
@@ -338,7 +328,6 @@ a:-webkit-any-link {
   text-decoration: underline;
 }
 
-
 .footer-menu ul {
   display: flex;
 }
@@ -347,7 +336,6 @@ a:-webkit-any-link {
   padding-right: 10px;
   display: block;
 }
-
 
 .footer-menu ul li a {
   color: #0e3567;
@@ -369,7 +357,6 @@ a:-webkit-any-link {
   color: #00aeff;
   text-decoration: none;
   overflow: hidden;
-
 }
 
 .wavespan {
@@ -387,13 +374,11 @@ a:-webkit-any-link {
   height: 100%;
   background: #59d1ef;
   transition: 1s;
-
 }
 
 a:hover .wave {
   top: 0;
 }
-
 
 a.wave:before {
   content: " ";
@@ -409,7 +394,6 @@ a.wave:before {
 a:hover {
   color: #00aeff;
 }
-
 
 @keyframes animate {
   0% {
@@ -456,4 +440,25 @@ a.underline {
 
 .location {
   text-decoration: underline;
+}
+.reviewCard {
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+.reviewCard p {
+  margin: 0;
+}
+
+.reviewList {
+  font-style: italic;
+  color: #555;
+}
+
+.ratings {
+  font-weight: bold;
+  color: #33bb38;
 }
