@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <div>
       <div className="social-icons">
-        <p>Get to know us!</p>
+        <p>Check work here</p>
         <a
           className="social-icon dribbble"
           href="https://www.youtube.com/watch?v=0AmITped1KY"
