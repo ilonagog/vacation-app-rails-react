@@ -152,7 +152,7 @@ ul {
   border: 0;
   display: flex;
   justify-items: center;
-  max-width: 800px;
+  width: 900px;
 }
 
 .card {
@@ -184,6 +184,7 @@ ul {
 .mbsc-row {
   display: flex;
   width: 40%;
+  margin: inherit;
 }
 
 .mbsc-col-12 mbsc-col-md-6 mbsc-col-lg-3 {
@@ -194,20 +195,42 @@ ul {
 .mbsc-mobiscroll.mbsc-form {
   background: none;
   display: flex;
+  /* padding-left: 80px; */
 }
 
 .mbsc-mobiscroll.mbsc-input input {
   background: none;
   background-color: rgb(189 208 241);
   border: solid;
+  resize: vertical;
+  height: 100px;
+  /* width: fit-content; */
 }
-
+.mbsc-mobiscroll.mbsc-input-box.mbsc-input .mbsc-input-wrap {
+  background: none;
+  resize: vertical;
+  width: max-content;
+  height: auto;
+}
+.mbsc-mobiscroll.mbsc-input-box.mbsc-input .mbsc-label ~ .mbsc-input-wrap input,
+.mbsc-mobiscroll.mbsc-input-box.mbsc-input
+  .mbsc-label
+  ~ .mbsc-input-wrap
+  .mbsc-color-input {
+  padding-top: 1.25em;
+  height: 3.5em;
+  width: 260px;
+}
+/* .large-input.mbsc-mobiscroll.mbsc-input input {
+  height: 100px;
+  resize: vertical;
+} */
 .mbsc-mobiscroll.mbsc-btn {
   font-family: "Times New Roman", Times, serif;
   font-variant: petite-caps;
-
+  padding-left: 20px;
   display: inherit;
-  margin-left: 140px;
+  /* margin-left: 140px; */
   width: fit-content;
 }
 
