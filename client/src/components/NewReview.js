@@ -87,7 +87,6 @@ const NewReview = ({ destinations, setDestinations }) => {
         <div className="mbsc-row">
           <div className="mbsc-col-12 mbsc-col-md-6 mbsc-col-lg-3">
             <mobiscroll.Input
-              className="large-input review-input" // Add a custom class "review-input"
               inputStyle="box"
               labelStyle="floating"
               placeholder="Write your review"

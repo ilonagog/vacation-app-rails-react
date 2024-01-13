@@ -8,12 +8,16 @@ const Footer = () => {
         <a
           className="social-icon dribbble"
           href="https://www.youtube.com/watch?v=0AmITped1KY"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <i className="fab fa-youtube"></i>
         </a>
         <a
           className="social-icon github"
           href="https://github.com/ilonagog/vacation-app-rails-react"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <i className="fab fa-github"></i>
         </a>
